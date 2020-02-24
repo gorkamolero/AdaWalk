@@ -1,9 +1,9 @@
 import React from 'react';
 import SpriteAnimator from "react-sprite-animator";
-import AdaWalk from "../assets/adaWalk.png";
+import AdaWalk from "../../assets/adaWalk.png";
 
 const Ada = ({pos, totalMoves}) => {
-  const whereTo = (100 / totalMoves)*pos  + '%'
+  const whereTo = (100 / totalMoves) * pos  + '%'
   return (
     <div
       className="distance"

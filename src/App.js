@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Stage from './components/Stage'
+import Stage from './components/journey/Stage'
 
 function App() {
   return (
