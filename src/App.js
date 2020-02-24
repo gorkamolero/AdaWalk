@@ -1,14 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Stage from './components/journey/Stage'
+import React from 'react'
+import GlobalStyles from 'styles/GlobalStyles'
+import 'App.css'
+import AdaTheme from 'styles/Theming.js'
+import Stepper from 'components/journey/Stepper'
+// import Stage from 'components/journey/Stage'
 
 function App() {
   return (
     <div className="App">
-      <Stage />
+      <AdaTheme>
+        <GlobalStyles />
+        <Stepper />
+      </AdaTheme>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
