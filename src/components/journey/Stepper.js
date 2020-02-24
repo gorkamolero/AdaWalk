@@ -1,33 +1,21 @@
 import React from 'react'
-import { Stepper, Step, StepLabel, Button, Box } from '@material-ui/core'
-import Connector from './Connector'
-import StepIcon from './StepIcon'
-import { Steps } from 'config'
-export default function AdaSteps() {
-  // Stepper
-  const [activeStep, setActiveStep] = React.useState(1)
-  const handleNext = () => setActiveStep(prevActiveStep => prevActiveStep + 1)
-  const handleBack = () => setActiveStep(prevActiveStep => prevActiveStep - 1)
-  const handleReset = () => setActiveStep(0)
+import { useParams, useRouteMatch, Switch, Route } from 'react-router-dom'
+import StepNav from './StepNav'
+import HTMLCSS from './Steps/HTMLCSS'
+
+export default function Stepper() {
+  let match = useRouteMatch()
+  let { step } = useParams()
 
   return (
-    <Box display="flex" justifyContent="center" alignItems="center">
-      <Stepper
-        style={{ width: '100%' }}
-        alternativeLabel
-        activeStep={activeStep}
-        connector={<Connector />}
-      >
-        {Steps.map((label, i) => {
-          return (
-            <Step key={label} style={{ cursor: 'pointer' }} onClick={() => setActiveStep(i)}>
-              <StepLabel StepIconComponent={StepIcon}>
-                {label}
-              </StepLabel>
-            </Step>
-          )
-        })}
-      </Stepper>
-    </Box>
+    <>
+      <StepNav step={step} />
+
+      <Switch>
+        <Route path='/pasos/html-y-css'>
+          <HTMLCSS />
+        </Route>
+      </Switch>
+    </>
   )
 }

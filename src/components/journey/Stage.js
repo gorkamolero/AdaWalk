@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Ada from './Ada';
-import { useHotkeys } from "react-hotkeys-hook";
+import { Container } from '@material-ui/core'
 
-const Stage = () => {
-  const [pos, setPos] = useState(1)
-  useHotkeys("right", () => setPos(prevPos => prevPos + 1));
-  useHotkeys("left", () => setPos(prevPos => prevPos - 1));
+const Stage = ({ pos, totalMoves, adaBackwards }) => {
 
   return (
-    <div className="stage" style={{ overflow: 'hidden' }}>
-      <Ada pos={pos} totalMoves={8} />
-    </div>
+    <Container
+      className="stage"
+      style={{
+        overflow: 'hidden',
+        position: 'absolute',
+        top: 0,
+        width: '100%',
+        maxWidth: '100%',
+        zIndex: 999
+      }}
+    >
+      <Ada pos={pos} totalMoves={totalMoves} backwards={adaBackwards} />
+    </Container>
   )
 }
 

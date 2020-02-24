@@ -1,28 +1,24 @@
 import React from 'react'
 import clsx from 'clsx'
 import { makeStyles, createStyles } from '@material-ui/styles'
-import { IconButton } from '@material-ui/core'
 import { HTMLIcon, JSIcon, EnglishTestIcon, TEAIcon, EntrevistaPersonalIcon, AdmisionIcon } from 'components/UI/CustomIcons'
 
 const Icons = [ <HTMLIcon />, <JSIcon />, <EnglishTestIcon />, <TEAIcon />, <EntrevistaPersonalIcon />, <AdmisionIcon /> ]
 
 
 const useStepIconStyles = makeStyles(theme => {
-  console.log('YOLO', theme)
   return createStyles({
     root: {
       color: '#eaeaf0',
       display: 'flex',
-      height: '3em',
-      width: '3em',
+      height: '2em',
+      width: '2em',
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: '#ccc',
       zIndex: 1,
-      color: '#fff',
-      display: 'flex',
       borderRadius: '50%',
-      padding: '.5em',
+      padding: '.75em',
       opacity: '.5'
     },
     active: {
@@ -46,7 +42,6 @@ const useStepIconStyles = makeStyles(theme => {
 })
 
 export default function StepIcon(props) {
-  console.log(props)
   const classes = useStepIconStyles()
   const { active, completed } = props
   return (
@@ -55,7 +50,7 @@ export default function StepIcon(props) {
         [classes.completed]: completed
       })}
     >
-      {Icons[props.icon]}
+      {Icons[props.icon - 1]}
     </div>
   )
 }

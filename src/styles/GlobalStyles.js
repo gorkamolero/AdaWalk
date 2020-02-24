@@ -11,6 +11,12 @@ const GlobalStyles = createGlobalStyle`
     width: 100% !important;
     height: 100% !important;
   }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    border: none;
+  }
 `
 
 export default GlobalStyles
