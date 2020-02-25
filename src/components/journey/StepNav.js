@@ -27,7 +27,7 @@ export default function StepNav({ step }) {
   // const handleReset = () => setActiveStep(0)
 
   return (
-    <Box pt={4}>
+    <Box pt={4} style={{ position: 'relative' }}>
       <Stage
         pos={activeStep}
         totalMoves={Object.keys(Steps).length}

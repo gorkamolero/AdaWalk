@@ -8,6 +8,7 @@ import {
 import GlobalStyles from 'styles/GlobalStyles'
 import 'App.css'
 import AdaTheme from 'styles/Theming.js'
+import News from 'components/news/News'
 import Stepper from 'components/journey/Stepper'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Router>
         <AdaTheme>
           <GlobalStyles />
+          <News />
           <Switch>
             <Route exact path="/">
               <Redirect to="/pasos/html-y-css" />
