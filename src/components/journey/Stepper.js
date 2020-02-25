@@ -1,10 +1,10 @@
 import React from 'react'
-import { useParams, useRouteMatch, Switch, Route } from 'react-router-dom'
+import { useParams, Switch, Route } from 'react-router-dom'
 import StepNav from './StepNav'
 import HTMLCSS from './Steps/HTMLCSS'
+import JS from './Steps/JS'
 
 export default function Stepper() {
-  let match = useRouteMatch()
   let { step } = useParams()
 
   return (
@@ -14,6 +14,9 @@ export default function Stepper() {
       <Switch>
         <Route path='/pasos/html-y-css'>
           <HTMLCSS />
+        </Route>
+        <Route path='/pasos/javascript'>
+          <JS />
         </Route>
       </Switch>
     </>

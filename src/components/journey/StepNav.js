@@ -6,13 +6,11 @@ import {
   Step,
   StepLabel,
   Box,
-  Container,
   Typography
 } from '@material-ui/core'
 import Connector from './Connector'
 import StepIcon from './StepIcon'
 import { Steps } from 'config'
-import HTMLCSS from './Steps/HTMLCSS'
 
 export default function StepNav({ step }) {
   const history = useHistory()
@@ -54,14 +52,6 @@ export default function StepNav({ step }) {
           )
         })}
       </Stepper>
-
-      <Container>
-        {activeStep === 0 && (
-          <Box display="flex">
-            <HTMLCSS />
-          </Box>
-        )}
-      </Container>
     </Box>
   )
 }

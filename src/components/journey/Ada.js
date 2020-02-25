@@ -34,7 +34,7 @@ const Ada = ({pos, totalMoves}) => {
       console.log('IS')
       setAdaBackwards(false)
     }
-  }, [pos])
+  }, [pos, history.action, prevPos])
 
   return (
     <Box
