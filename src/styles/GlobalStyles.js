@@ -69,21 +69,24 @@ const GlobalStyles = createGlobalStyle`
   }
 
   .Marquee {
-    background: black;
+    background: var(--adalabBlue);
     white-space: nowrap;
     color: white;
     height: 100%;
     display: flex;
     align-items: center;
+
+    h6 { color: inherit; }
   }
 
   .clock {
+   
     &-container {
-      background-color: var(--adalabBlueDark);
+      background-color: var(--adalabBlue);
       box-shadow: inset 1px 1px 5px rgba(255,255,255,.15), 0 15px 90px 30px rgba(0,0,0,.25);
       display: flex;
       justify-content: center;
-      font-size: 75%;
+      font-size: 60%;
     }
     &-col {
       text-align: center;
@@ -112,14 +115,15 @@ const GlobalStyles = createGlobalStyle`
     
     &-timer {
       color: #fff;
+      font-weight: medium;
       font-size: 2.618em;
       text-transform: uppercase;
       margin: 0;
     }
     &-label {
-      color: rgba(255,255,255,.55);
+      color: rgba(255,255,255,.85);
       text-transform: uppercase;
-      font-size: .7em;
+      font-size: 1em;
       margin-top: 2px;
     }
   }

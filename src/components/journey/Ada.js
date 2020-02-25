@@ -22,7 +22,6 @@ const Ada = ({pos, totalMoves}) => {
 
 
   let history = useHistory()
-  console.log('YOLO', history)
   
   const [adaBackwards, setAdaBackwards] = useState(false)
   const prevPos = usePrevious(pos)

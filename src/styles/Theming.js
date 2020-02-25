@@ -11,7 +11,7 @@ const theme = createMuiTheme({
     primary: {
       main: '#14d9c4',
       light: '#6cffef',
-      dark: "#099d8d",
+      dark: '#099d8d'
       // contrastText: "#fff"
     },
     secondary: {
@@ -46,8 +46,10 @@ const theme = createMuiTheme({
       fontSize: '1.618rem'
     },
     h6: {
+      fontFamily: '"Bangers", "Product Sans", "Helvetica", "Arial", sans-serif',
       fontSize: '1rem',
-      fontWeight: 'lighter'
+      fontWeight: 'lighter',
+      color: '#099d8d'
     },
     button: {
       letterSpacing: '0.04em'

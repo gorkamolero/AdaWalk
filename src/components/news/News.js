@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Hidden } from '@material-ui/core'
+import { Box } from '@material-ui/core'
 import AdaMarquee from 'components/news/Marquee'
 import Countdown from 'components/news/Countdown'
 
@@ -9,7 +9,7 @@ export default function News() {
       <Box style={{ flex: 1 }}>
         <Countdown />
       </Box>
-      <Box style={{ flex: 2, overflow: 'hidden' }}>
+      <Box style={{ flex: 3, overflow: 'hidden' }}>
         <AdaMarquee />
       </Box>
     </Box>

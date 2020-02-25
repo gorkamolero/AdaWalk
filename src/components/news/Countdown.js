@@ -1,4 +1,5 @@
 import React from 'react'
+import { useConfig } from 'hooks'
 import styled from 'styled-components'
 import Countdown from 'react-countdown'
 import { Box, Container, Typography } from '@material-ui/core'
@@ -44,22 +45,22 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
   return completed ? (
     <Complete />
   ) : (
-    (<div class="clock-container">
-      <div class="clock-col">
-        <p class="clock-day clock-timer">{days}</p>
-        <p class="clock-label">Días</p>
+    (<div className="clock-container">
+      <div className="clock-col">
+        <p className="clock-day clock-timer">{days}</p>
+        <p className="clock-label">Días</p>
       </div>
-      <div class="clock-col">
-        <p class="clock-hours clock-timer">{hours}</p>
-        <p class="clock-label">Horas</p>
+      <div className="clock-col">
+        <p className="clock-hours clock-timer">{hours}</p>
+        <p className="clock-label">Horas</p>
       </div>
-      <div class="clock-col">
-        <p class="clock-minutes clock-timer">{minutes}</p>
-        <p class="clock-label">Minutos</p>
+      <div className="clock-col">
+        <p className="clock-minutes clock-timer">{minutes}</p>
+        <p className="clock-label">Minutos</p>
       </div>
-      <div class="clock-col">
-        <p class="clock-seconds clock-timer">{seconds}</p>
-        <p class="clock-label">Segundos</p>
+      <div className="clock-col">
+        <p className="clock-seconds clock-timer">{seconds}</p>
+        <p className="clock-label">Segundos</p>
       </div>
     </div>
     )
@@ -68,7 +69,7 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
 
 
 export default function AdaCountdown() {
-  return (
-    <Countdown  date={Date.now() + 500000000} renderer={renderer} />
-  )
+  let { fechas: { deadline } } = useConfig()
+  deadline = deadline.toDate()
+  return <Countdown date={deadline} renderer={renderer} />
 }
