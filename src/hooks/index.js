@@ -1,5 +1,4 @@
-import React from 'react'
-import { useFirestore, useFirestoreDocData, useFirestoreCollectionData } from 'reactfire'
+import { useFirestore, useFirestoreDocData } from 'reactfire'
 
 export function useConfig() {
   const currentPromoRef = useFirestore().doc('config/current')

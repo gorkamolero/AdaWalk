@@ -6,7 +6,6 @@ import * as serviceWorker from './serviceWorker';
 import { fbConfig } from 'fb'
 import {
   FirebaseAppProvider,
-  useFirestoreDocData,
   SuspenseWithPerf
 } from 'reactfire'
 
