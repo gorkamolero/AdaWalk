@@ -25,6 +25,7 @@ const Ada = ({pos, totalMoves}) => {
   
   const [adaBackwards, setAdaBackwards] = useState(false)
   const prevPos = usePrevious(pos)
+  console.log('PREVPOS', prevPos)
   useEffect(() => {
     if (prevPos > pos) setAdaBackwards(true)
     else setAdaBackwards(false)
@@ -33,7 +34,7 @@ const Ada = ({pos, totalMoves}) => {
       console.log('IS')
       setAdaBackwards(false)
     }
-  }, [pos, history.action, prevPos])
+  }, [pos])
 
   return (
     <Box
