@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import microlight from 'microlight'
+import ArenguForm from 'components/UI/ArenguForm'
 import { Paper, Container, Box, Typography, Divider } from '@material-ui/core'
 
 export default function JS() {
@@ -16,7 +17,7 @@ export default function JS() {
           </Box>
           <Divider />
           <Box mt={4}>
-            <div data-arengu-form-id="158262184424627629"></div>
+            <ArenguForm id="158262184424627629"/>
           </Box>
         </Box>
       </Paper>
