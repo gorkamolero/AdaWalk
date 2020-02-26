@@ -9,9 +9,9 @@ export default function Stepper() {
   let { step } = useParams()
 
   return (
-    <Box py={4}>
+    <Box py={2} style={{ backgroundColor: 'whitesmoke' }}>
       <StepNav step={step} />
-
+      <br/>
       <Switch>
         <Route path='/pasos/html-y-css'>
           <HTMLCSS />

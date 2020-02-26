@@ -144,6 +144,14 @@ const GlobalStyles = createGlobalStyle`
       }
     }
   }
+
+  .MuiStep-root {
+    > * { transition: all .75s ease; }
+    .Mui-disabled {
+      opacity: .75;
+      filter: saturate(0);
+    }
+  }
 `
 
 export default GlobalStyles

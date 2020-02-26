@@ -3,9 +3,9 @@ import { StepConnector } from '@material-ui/core'
 
 const ColorlibConnector = withStyles(theme => ({
   alternativeLabel: {
-    left: `calc(-50% + 2em)`,
-    right: `calc(50% + 2em)`,
-    top: '2em'
+    left: `calc(-50% + 1.75em)`,
+    right: `calc(50% + 1.75em)`,
+    top: '1.75em'
   },
   active: {
     '& $line': {

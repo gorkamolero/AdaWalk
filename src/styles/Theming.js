@@ -106,7 +106,21 @@ const theme = createMuiTheme({
         width: '2em',
         height: '2em'
       }
-    }
+    },
+    // MuiStepLabel: {
+    //   disabled: {
+    //     opacity: '.5',
+    //     filter: 'saturate(0)'
+    //   },
+    //   active: {
+    //     opacity: '1',
+    //     filter: 'saturate(1)'
+    //   },
+    //   completed: {
+    //     opacity: '1',
+    //     filter: 'saturate(1)'
+    //   }
+    // }
   }
 })
 

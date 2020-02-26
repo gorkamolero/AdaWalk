@@ -19,18 +19,15 @@ const useStepIconStyles = makeStyles(theme => {
       zIndex: 1,
       borderRadius: '50%',
       padding: '.75em',
-      opacity: '.5'
     },
     active: {
       backgroundImage:
         `linear-gradient(136deg, ${theme.palette.primary.light} 0%, ${theme.palette.primary.dark} 100%)`,
-      boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)',
-      opacity: '1'
+      boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)'
     },
     completed: {
       backgroundImage:
-        `linear-gradient(136deg, ${theme.palette.primary.light} 0%, ${theme.palette.primary.dark} 100%)`,
-      opacity: '1'
+        `linear-gradient(136deg, ${theme.palette.primary.light} 0%, ${theme.palette.primary.dark} 100%)`
     },
     circle: {
       width: 8,
