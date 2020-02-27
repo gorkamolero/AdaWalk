@@ -69,7 +69,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   .Marquee {
-    background: var(--adalabBlue);
+    /* background: var(--adalabBlue); */
     white-space: nowrap;
     color: white;
     height: 100%;
@@ -80,30 +80,34 @@ const GlobalStyles = createGlobalStyle`
   }
 
   .clock {
-   
     &-container {
-      background-color: var(--adalabBlue);
-      box-shadow: inset 1px 1px 5px rgba(255,255,255,.15), 0 15px 90px 30px rgba(0,0,0,.25);
+      --spacing: .7em;
+
+      font-family: "Bangers", "Product Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      /* background-color: var(--adalabBlue); */
+      /* box-shadow: inset 1px 1px 5px rgba(255,255,255,.15), 0 15px 90px 30px rgba(0,0,0,.25); */
       display: flex;
       justify-content: center;
-      font-size: 60%;
+      font-size: 70%;
+      padding: var(--spacing) 0;
+
     }
     &-col {
       text-align: center;
-      margin-right: 1em;
-      margin-left: 1em;
+      margin-right: var(--spacing);
+      margin-left: var(--spacing);
       min-width: 4em;
       position: relative;
       &:not(:last-child):before,
       &:not(:last-child):after{
         content: "";
-        background-color: rgba(255,255,255,.3);
+        background-color: rgba(255,255,255,.5);
         height: 3px;
         width: 3px;
         border-radius: 100%;
         display: block;
         position: absolute;
-        right: -1.2em;
+        right: -1em;
       }
       &:not(:last-child):before {
         top: 25%;
@@ -121,10 +125,12 @@ const GlobalStyles = createGlobalStyle`
       margin: 0;
     }
     &-label {
+      font-family: var(--font-family);
       color: rgba(255,255,255,.85);
       text-transform: uppercase;
       font-size: 1em;
       margin-top: 2px;
+      margin-bottom: 0;
     }
   }
 

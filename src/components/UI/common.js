@@ -7,6 +7,8 @@ import Ada from 'components/journey/Ada'
 const StyledSuperContainer = styled(Box)`
   background-color: whitesmoke;
   min-height: 100vh;
+  box-shadow: inset 0px 10px 12px 0px rgba(0,0,0,0.1);
+}
 `
 
 export const SuperContainer = (props) => {
