@@ -7,13 +7,16 @@ export function useConfig() {
   const promosRef = useFirestore().doc('config/promos')
   const promos = useFirestoreDocData(promosRef)
 
-
   const myRef = Object.keys(promos).find(key => key === `promo-${currentPromo}`)
   const info = promos[myRef]
 
+  const docsRef = useFirestore().doc('config/docs')
+  const docs = useFirestoreDocData(docsRef)
+
   const config = {
     currentPromo,
-    ...info
+    ...info,
+    docs
   }
 
   return config

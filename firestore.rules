@@ -8,7 +8,7 @@ service cloud.firestore {
       allow read, write: if exists(/databases/$(database)/documents/admin/$(request.auth.uid))
     }
     match /{config}/{document=**} {
-      allow read: if true
+      allow read, write: if true
     }
   }
 }

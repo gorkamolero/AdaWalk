@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Box } from '@material-ui/core'
+import { Box, Container, Paper } from '@material-ui/core'
 import Spinner from 'react-spinkit'
 import Ada from 'components/journey/Ada'
 
@@ -18,6 +18,12 @@ export const SuperContainer = (props) => {
     </StyledSuperContainer>
   )
 }
+
+export const StepContainer = props => (
+  <Container maxWidth="sm">
+    <Paper elevation={2}>{props.children}</Paper>
+  </Container>
+)
 
 export const AdaSpinner = () => {
   return (

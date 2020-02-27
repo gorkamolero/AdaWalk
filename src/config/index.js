@@ -1,4 +1,5 @@
 export const Steps = {
+  'Introducción': 'empecemos',
   'HTML y CSS': 'html-y-css',
   'JS': 'javascript',
   'English Test': 'english-test',

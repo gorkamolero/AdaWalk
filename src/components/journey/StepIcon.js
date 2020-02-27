@@ -1,9 +1,9 @@
 import React from 'react'
 import clsx from 'clsx'
 import { makeStyles, createStyles } from '@material-ui/styles'
-import { HTMLIcon, JSIcon, EnglishTestIcon, TEAIcon, EntrevistaPersonalIcon, AdmisionIcon } from 'components/UI/CustomIcons'
+import { LaunchIcon, HTMLIcon, JSIcon, EnglishTestIcon, TEAIcon, EntrevistaPersonalIcon, AdmisionIcon } from 'components/UI/CustomIcons'
 
-const Icons = [ <HTMLIcon />, <JSIcon />, <EnglishTestIcon />, <TEAIcon />, <EntrevistaPersonalIcon />, <AdmisionIcon /> ]
+const Icons = [ <LaunchIcon />, <HTMLIcon />, <JSIcon />, <EnglishTestIcon />, <TEAIcon />, <EntrevistaPersonalIcon />, <AdmisionIcon /> ]
 
 
 const useStepIconStyles = makeStyles(theme => {
