@@ -8,12 +8,11 @@ import {
   FirebaseAppProvider,
   SuspenseWithPerf
 } from 'reactfire'
+import { AdaSpinner } from 'components/UI/common'
 
 ReactDOM.render(
   <FirebaseAppProvider firebaseConfig={fbConfig}>
-    <SuspenseWithPerf
-      fallback={'cargando...'}
-    >
+    <SuspenseWithPerf fallback={<AdaSpinner />}>
       <App />
     </SuspenseWithPerf>
   </FirebaseAppProvider>,

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams, Switch, Route } from 'react-router-dom'
-import { Box } from '@material-ui/core'
+import { SuperContainer } from 'components/UI/common'
 import StepNav from './StepNav'
 import HTMLCSS from './Steps/HTMLCSS'
 import JS from './Steps/JS'
@@ -9,7 +9,7 @@ export default function Stepper() {
   let { step } = useParams()
 
   return (
-    <Box py={2} style={{ backgroundColor: 'whitesmoke' }}>
+    <SuperContainer>
       <StepNav step={step} />
       <br/>
       <Switch>
@@ -20,6 +20,6 @@ export default function Stepper() {
           <JS />
         </Route>
       </Switch>
-    </Box>
+    </SuperContainer>
   )
 }
