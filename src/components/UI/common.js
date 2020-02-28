@@ -19,10 +19,37 @@ export const SuperContainer = (props) => {
     </StyledSuperContainer>
   )
 }
+const pageVariants = {
+  initial: { opacity: 0, scale: 0.8 },
+  in: { opacity: 1, scale: 1, y: 0 },
+  out: { opacity: 0, scale: 1.1, y: '100vh' }
+}
+
+const pageTransition = {
+  type: 'tween',
+  ease: 'anticipate',
+  duration: 1
+}
 export const StepContainer = props => (
-  <Container maxWidth="sm">
-    <Paper elevation={2}>{props.children}</Paper>
-  </Container>
+  <motion.div
+    initial="initial"
+    animate="in"
+    exit="out"
+    variants={pageVariants}
+    transition={pageTransition}
+    style={{
+      position: 'absolute',
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'center',
+      padding: '0 0 2em',
+      background: 'whitesmoke'
+    }}
+  >
+    <Container maxWidth="sm">
+      <Paper elevation={2}>{props.children}</Paper>
+    </Container>
+  </motion.div>
 )
 
 export const AdaSpinner = () => {
