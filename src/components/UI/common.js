@@ -1,14 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
+import { motion } from 'framer-motion'
 import { Box, Container, Paper } from '@material-ui/core'
 import Spinner from 'react-spinkit'
-import Ada from 'components/journey/Ada'
+// import Ada from 'components/journey/Ada'
 
-const StyledSuperContainer = styled(Box)`
+const StyledSuperContainer = styled.main`
   background-color: whitesmoke;
   min-height: 100vh;
   box-shadow: inset 0px 10px 12px 0px rgba(0,0,0,0.1);
-}
+  position: relative;
 `
 
 export const SuperContainer = (props) => {
@@ -18,7 +19,6 @@ export const SuperContainer = (props) => {
     </StyledSuperContainer>
   )
 }
-
 export const StepContainer = props => (
   <Container maxWidth="sm">
     <Paper elevation={2}>{props.children}</Paper>

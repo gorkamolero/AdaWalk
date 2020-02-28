@@ -1,6 +1,6 @@
 import React from 'react'
 import { InlineWidget } from 'react-calendly'
-import { Paper, Container, Box } from '@material-ui/core'
+import { Box } from '@material-ui/core'
 
 export default function EntrevistaPersonal() {
   return (

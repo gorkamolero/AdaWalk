@@ -19,7 +19,7 @@ function App() {
         <AdaTheme>
           <GlobalStyles />
           <News />
-          <Switch>
+          <Switch key="first switch">
             <Route exact path="/">
               <Redirect to="/pasos/empecemos" />
             </Route>

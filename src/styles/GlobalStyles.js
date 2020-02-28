@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
-import js1 from 'assets/img/js1.png'
-import js2 from 'assets/img/js2.png'
+// import js1 from 'assets/img/js1.png'
+// import js2 from 'assets/img/js2.png'
 
 const GlobalStyles = createGlobalStyle`
   :root {

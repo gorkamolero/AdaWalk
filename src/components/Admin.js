@@ -1,14 +1,6 @@
 import React from 'react'
 import { useConfig } from 'hooks'
-import {
-  Grid,
-  Container,
-  Box,
-  Paper,
-  Typography,
-  Divider,
-  Button
-} from '@material-ui/core'
+import { Box, Typography } from '@material-ui/core'
 import { SuperContainer, StepContainer } from 'components/UI/common'
 import MarkdownEditor from 'components/admin/MarkdownEditor'
 
