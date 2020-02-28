@@ -8,16 +8,12 @@ import Spinner from 'react-spinkit'
 const StyledSuperContainer = styled.main`
   background-color: whitesmoke;
   min-height: 100vh;
-  box-shadow: inset 0px 10px 12px 0px rgba(0,0,0,0.1);
+  box-shadow: inset 0px 10px 12px 0px rgba(0, 0, 0, 0.1);
   position: relative;
 `
 
-export const SuperContainer = (props) => {
-  return (
-    <StyledSuperContainer py={2}>
-      {props.children}
-    </StyledSuperContainer>
-  )
+export const SuperContainer = props => {
+  return <StyledSuperContainer py={2}>{props.children}</StyledSuperContainer>
 }
 const pageVariants = {
   initial: { opacity: 0, scale: 0.8 },
@@ -30,40 +26,53 @@ const pageTransition = {
   ease: 'anticipate',
   duration: 1
 }
+
 export const StepContainer = props => (
-  <motion.div
+  <Box
+    component={motion.div}
     initial="initial"
     animate="in"
     exit="out"
     variants={pageVariants}
     transition={pageTransition}
+    display="flex"
+    justifyContent="center"
+    pb={2}
+    width="100%"
     style={{
-      position: 'absolute',
-      width: '100%',
-      display: 'flex',
-      justifyContent: 'center',
-      padding: '0 0 2em',
-      background: 'whitesmoke'
+      background: 'whitesmoke',
+      position: 'absolute'
     }}
   >
     <Container maxWidth="sm">
       <Paper elevation={2}>{props.children}</Paper>
     </Container>
-  </motion.div>
+  </Box>
 )
 
 export const AdaSpinner = () => {
   return (
     <Box
       display="flex"
-      width="100%" height="100%"
+      width="100%"
+      height="100%"
       position="fixed"
       alignItems="center"
       justifyContent="center"
-      style={{ top: 0, left: 0, right: 0, bottom: 0, background: 'white', zIndex: 99999 }}
+      style={{
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        background: 'white',
+        zIndex: 99999
+      }}
     >
-
-      <Spinner name="folding-cube" color="#14d9c4" style={{ transform: 'scale(4) rotage(45deg)' }} />
+      <Spinner
+        name="folding-cube"
+        color="#14d9c4"
+        style={{ transform: 'scale(4) rotage(45deg)' }}
+      />
     </Box>
   )
 }

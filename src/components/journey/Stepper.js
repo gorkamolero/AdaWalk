@@ -8,6 +8,12 @@ import HTMLCSS from './Steps/HTMLCSS'
 import JS from './Steps/JS'
 import EntrevistaPersonal from './Steps/EntrevistaPersonal'
 
+const AnimatedRoute = props => (
+  <Route {...props}>
+    <StepContainer>{props.children}</StepContainer>
+  </Route>
+)
+
 export default function Stepper() {
   let { step } = useParams()
   const location = useLocation()
@@ -19,26 +25,18 @@ export default function Stepper() {
       <br />
       <AnimatePresence>
         <Switch location={location} key={location.pathname}>
-          <Route path="/pasos/empecemos">
-            <StepContainer>
-              <Intro />
-            </StepContainer>
-          </Route>
-          <Route path="/pasos/html-y-css">
-            <StepContainer>
-              <HTMLCSS />
-            </StepContainer>
-          </Route>
-          <Route path="/pasos/javascript">
-            <StepContainer>
-              <JS />
-            </StepContainer>
-          </Route>
-          <Route path="/pasos/entrevista">
-            <StepContainer>
-              <EntrevistaPersonal />
-            </StepContainer>
-          </Route>
+          <AnimatedRoute path="/pasos/empecemos">
+            <Intro />
+          </AnimatedRoute>
+          <AnimatedRoute path="/pasos/html-y-css">
+            <HTMLCSS />
+          </AnimatedRoute>
+          <AnimatedRoute path="/pasos/javascript">
+            <JS />
+          </AnimatedRoute>
+          <AnimatedRoute path="/pasos/entrevista">
+            <EntrevistaPersonal />
+          </AnimatedRoute>
         </Switch>
       </AnimatePresence>
     </SuperContainer>
