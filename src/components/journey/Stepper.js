@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useParams, Switch, Route, useLocation, Redirect } from 'react-router-dom'
 import { useFullUser, useStepper } from 'hooks'
 import { AnimatePresence } from 'framer-motion'

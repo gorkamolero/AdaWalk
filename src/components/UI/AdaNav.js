@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { useAuth } from 'reactfire'
 // import { signOut } from 'backend/auth'
 import { makeStyles } from '@material-ui/styles'
 import SpeedDial from '@material-ui/lab/SpeedDial'
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon'
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction'
-import { CalendarToday as Cal, SupervisedUserCircle as User, PowerSettingsNew as LogOut } from '@material-ui/icons'
+import { Settings, PowerSettingsNew as LogOut } from '@material-ui/icons'
 
 const useStyles = makeStyles(theme => ({
   speedDial: {
@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
 
 
 const SuperNav = () => {
-  // const [, setLocation] = useLocation()
+  const history = useHistory()
   const auth = useAuth()
   const [open, setOpen] = useState(false)
   const classes = useStyles()
@@ -26,7 +26,7 @@ const SuperNav = () => {
 
   const actions = [
     // { icon: <Cal fontSize="inherit" />, name: 'Calendario', click: () => setLocation('/calendario') },
-    // { icon: <User fontSize="inherit" />, name: 'Perfil', click: () => setLocation('/perfil') },
+    { icon: <Settings fontSize="inherit" />, name: 'Perfil', click: () => history.push('/admin') },
     { icon: <LogOut fontSize="inherit" />, name: 'Cerrar sesión', click: () => signOut() }
   ]
 

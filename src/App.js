@@ -1,8 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
-import { AuthCheck, useUser } from 'reactfire'
+import { AuthCheck } from 'reactfire'
 import { SnackbarProvider } from 'notistack'
-import { useStepper } from 'hooks'
 
 import GlobalStyles from 'styles/GlobalStyles'
 import 'App.css'
@@ -15,7 +14,6 @@ import News from 'components/news/News'
 import Stepper from 'components/journey/Stepper'
 
 function App() {
-  const auth = useUser()
   return (
     <div className="App">
       <Router>

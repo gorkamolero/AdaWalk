@@ -1,5 +1,5 @@
 import { useUser, useFirestore, useFirestoreDocData } from 'reactfire'
-import { Steps, Progress } from 'config'
+import { Steps } from 'config'
 
 export function useConfig() {
   const currentPromoRef = useFirestore().doc('config/current')
