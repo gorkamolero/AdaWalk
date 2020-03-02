@@ -61,6 +61,11 @@ const theme = createMuiTheme({
         '@font-face': '"Product Sans", "Helvetica", "Arial", sans-serif'
       }
     },
+    MuiButton: {
+      containedPrimary: {
+        color: 'white'
+      }
+    },
     MuiCardContent: {
       root: {
         // Some CSS
@@ -75,6 +80,11 @@ const theme = createMuiTheme({
     },
     MuiDialogContent: {
       root: { overflow: 'visible !important' }
+    },
+    MuiSpeedDial: {
+      fab: {
+        color: 'white'
+      }
     },
     MuiSpeedDialIcon: {
       root: {
@@ -106,7 +116,7 @@ const theme = createMuiTheme({
         width: '2em',
         height: '2em'
       }
-    },
+    }
     // MuiStepLabel: {
     //   disabled: {
     //     opacity: '.5',

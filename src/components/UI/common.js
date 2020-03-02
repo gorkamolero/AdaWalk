@@ -12,9 +12,25 @@ const StyledSuperContainer = styled.main`
   position: relative;
 `
 
+const StyledSuperCenter = styled.article`
+  background-color: whitesmoke;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
 export const SuperContainer = props => {
-  return <StyledSuperContainer py={2}>{props.children}</StyledSuperContainer>
+  return <StyledSuperContainer {...props} py={2} />
 }
+
+export const SuperCenter = props => {
+  return <StyledSuperCenter {...props} py={2} />
+}
+
 const pageVariants = {
   initial: { opacity: 0, scale: 0.8 },
   in: { opacity: 1, scale: 1, y: 0 },
