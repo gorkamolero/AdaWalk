@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import { useParams, Switch, Route, useLocation, Redirect } from 'react-router-dom'
-import { useFullUser, useStepper } from 'hooks'
+import { useParams, Switch, Route, useLocation } from 'react-router-dom'
+import { useFullUser, useConfig } from 'hooks'
 import { AnimatePresence } from 'framer-motion'
 import { StepContainer } from 'components/UI/common'
-import StepBlocker from './StepBlocker'
 import StepNav from './StepNav'
 import Intro from './Steps/Intro'
 import HTMLCSS from './Steps/HTMLCSS'
@@ -20,18 +19,14 @@ export default function Stepper() {
   let { step } = useParams()
   const location = useLocation()
   const user = useFullUser()
-  const stepper = useStepper()
   console.log('Full user', user)
 
-  if (user.profile && user.profile.status && !user.profile.status.includes('OK')) return (
-    <StepBlocker status={user.profile.status} />
-  )
+  const [status, setStatus] = useState(user.profile.status)
 
   return (
     <>
       <StepNav step={step} />
       <br />
-      <Redirect to={stepper}/>
       <AnimatePresence>
         <Switch location={location} key={location.pathname}>
           <AnimatedRoute path="/pasos/empecemos">

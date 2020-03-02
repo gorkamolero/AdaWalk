@@ -1,12 +1,8 @@
 import React from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect
-} from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import { AuthCheck, useUser } from 'reactfire'
 import { SnackbarProvider } from 'notistack'
+import { useStepper } from 'hooks'
 
 import GlobalStyles from 'styles/GlobalStyles'
 import 'App.css'
@@ -20,7 +16,6 @@ import Stepper from 'components/journey/Stepper'
 
 function App() {
   const auth = useUser()
-  console.log('AUTH', auth)
   return (
     <div className="App">
       <Router>

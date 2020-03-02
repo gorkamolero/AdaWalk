@@ -2,7 +2,8 @@ service cloud.firestore {
   match /databases/{database}/documents {
     match /candidates/{candidate} {
       allow create: if true;
-      allow read, update: if request.auth.uid == candidate
+      // allow read, update: if request.auth.uid == candidate
+      allow read: if true;
     }
     match /{document=**} {
       allow read, write: if exists(/databases/$(database)/documents/admin/$(request.auth.uid))

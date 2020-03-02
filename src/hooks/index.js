@@ -1,4 +1,5 @@
 import { useUser, useFirestore, useFirestoreDocData } from 'reactfire'
+import { Steps, Progress } from 'config'
 
 export function useConfig() {
   const currentPromoRef = useFirestore().doc('config/current')
@@ -14,13 +15,17 @@ export function useConfig() {
   const docs = useFirestoreDocData(docsRef)
 
   const candidatesRef = useFirestore().doc('config/candidates')
-  const candidates = useFirestoreDocData(docsRef)
+  const candidates = useFirestoreDocData(candidatesRef)
+
+  const evRef = useFirestore().doc('config/evaluacion')
+  const ev = useFirestoreDocData(evRef)
 
   const config = {
     currentPromo,
     ...info,
     docs,
-    candidates
+    candidates,
+    evaluacion: ev
   }
 
   return config
@@ -28,10 +33,27 @@ export function useConfig() {
 
 export function useFullUser() {
   const user = useUser()
-  console.log('UYSER', user.uid)
   const userDetailsRef = useFirestore().collection('candidates').doc(user.uid)
   const profile = useFirestoreDocData(userDetailsRef)
-  console.log('Profile', profile)
   user.profile = profile
   return user
+}
+
+export function useStepper() {
+  const user = useFullUser()
+  const config = useConfig()
+
+  if (!user.profile.progress) return '/pasos/empecemos'
+  if (user.profile.progress === 'html') {
+    if (!user.profile.htmlScore) return (Steps['Introducción'])
+    else {
+      const htmlScore = parseInt(user.profile.htmlScore);
+      if (htmlScore >= Number(config.evaluacion.tests['html-y-css'])) return Steps['JS']
+    }
+  }
+  if (user.profile.progress === 'js') {
+    const jsScore = parseInt(user.profile.jsScore);
+    if (jsScore > Number(config.evaluacion.tests['javascript'])) return Steps['English Test']
+  }
+  else return '/'
 }

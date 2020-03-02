@@ -57,7 +57,6 @@ const options = {
 
 function Markdown(props) {
   let text = JSON.parse(props.children)
-  console.log(props.children, 'YOLO', text)
   return <ReactMarkdown options={options} {...props}>{text}</ReactMarkdown>
 }
 

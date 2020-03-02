@@ -59,6 +59,7 @@ export const StepContainer = props => (
       background: 'whitesmoke',
       position: 'absolute'
     }}
+    {...props}
   >
     <Container maxWidth="sm">
       <Paper elevation={2}>{props.children}</Paper>

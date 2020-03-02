@@ -6,7 +6,7 @@ const ARENGU_SDK_LOADED = 'af-init'
 /**
  * Component to render a form from Arengu
  */
-export const ArenguForm = ({ id, hiddenFields }) => {
+export const ArenguForm = ({ id, hiddenFields, fields }) => {
   const container = useRef()
 
   useEffect(() => {
@@ -24,6 +24,7 @@ export const ArenguForm = ({ id, hiddenFields }) => {
     }
 
     const setHiddenFields = form => {
+      console.log('Hidden fields', hiddenFields)
       if (hiddenFields == null) {
         return
       }
