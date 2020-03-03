@@ -1,4 +1,10 @@
-import { useUser, useFirestore, useFirestoreDocData } from 'reactfire'
+import React from 'react'
+import {
+  useUser,
+  useFirestore,
+  useFirestoreDocData,
+  useFirestoreCollection
+} from 'reactfire'
 import { Steps } from 'config'
 
 export function useConfig() {
@@ -33,15 +39,33 @@ export function useConfig() {
 
 export function useFullUser() {
   const user = useUser()
+
+  const adminListRef = useFirestore().collection('admin')
+  const adminListSnapshot = useFirestoreCollection(adminListRef)
+  const adminList = adminListSnapshot.docs.map(doc => doc.id)
+  if (adminList.includes(user.uid)) {
+    user.profile = {}
+    user.isAdmin = true
+  }
+
   const userDetailsRef = useFirestore().collection('candidates').doc(user.uid)
   const profile = useFirestoreDocData(userDetailsRef)
   user.profile = profile
+
+  React.useEffect(() => {
+    if (user.profile.win) {
+      setTimeout(() => userDetailsRef.update({ win: false }), 7000)
+    }
+  }, [user.profile.win])
+
   return user
 }
 
 export function useStepper() {
   const user = useFullUser()
   const config = useConfig()
+
+  if (user.isAdmin || !user.profile) return '/admin'
 
   if (!user.profile.progress) return '/pasos/empecemos'
   if (user.profile.progress === 'html') {
@@ -56,4 +80,9 @@ export function useStepper() {
     if (jsScore > Number(config.evaluacion.tests['javascript'])) return Steps['English Test']
   }
   else return '/'
+}
+
+export function useArenguHiddenFields() {
+  const user = useUser()
+  return [{ key: 'email', value: user.email }]
 }

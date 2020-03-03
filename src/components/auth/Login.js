@@ -29,7 +29,9 @@ export default function LoginForm() {
       await auth.sendSignInLinkToEmail(email, actionCodeSettings)
       window.localStorage.setItem('emailForSignIn', email)
       setEmailSent(true)
-      enqueueSnackbar('Éxito, ' + email, { variant: 'success' })
+      enqueueSnackbar(`Te hemos enviado un email a ${email}`, {
+        variant: 'success'
+      })
     } catch (err) {
       enqueueSnackbar('Error creando link: ' + err.message, {
         variant: 'error'

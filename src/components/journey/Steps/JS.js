@@ -4,11 +4,12 @@ import ArenguForm from 'components/UI/ArenguForm'
 import { Box, Typography, Divider, Tabs, Tab, Button } from '@material-ui/core'
 import TabPanel from 'components/UI/TabPanel'
 import MarkDown from 'components/UI/MarkDown'
-import { useConfig } from 'hooks'
+import { useConfig, useArenguHiddenFields } from 'hooks'
 
 export default function JS() {
-  let { docs } = useConfig()
+  let { docs: { intros: docs } } = useConfig()
   const [tab, setTab] = React.useState(0)
+  const hiddenFields = useArenguHiddenFields()
 
   useEffect(() => {
     setTimeout(() => microlight.reset('af-field-hint'), 2000)
@@ -52,7 +53,7 @@ export default function JS() {
           </Box>
           <Divider />
           <Box mt={4}>
-            <ArenguForm id="158262184424627629" />
+            <ArenguForm hiddenFields={hiddenFields} id="158262184424627629" />
           </Box>
         </TabPanel>
       </Box>

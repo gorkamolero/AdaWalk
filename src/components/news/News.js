@@ -9,7 +9,9 @@ const useNewsStyles = makeStyles(theme => {
     root: {
       backgroundImage: `linear-gradient(136deg, ${theme.palette.primary.light} 0%, ${theme.palette.primary.dark} 100%)`,
       boxShadow: '0 4px 10px 0 rgba(0,0,0,.15)',
-      zIndex: 9999
+      zIndex: 1,
+      position: 'fixed',
+      height: '60px'
     },
   })
 })

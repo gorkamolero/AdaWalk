@@ -10,6 +10,7 @@ const StyledSuperContainer = styled.main`
   min-height: 100vh;
   box-shadow: inset 0px 10px 12px 0px rgba(0, 0, 0, 0.1);
   position: relative;
+  padding-top: 60px;
 `
 
 const StyledSuperCenter = styled.article`
@@ -57,7 +58,7 @@ export const StepContainer = props => (
     width="100%"
     style={{
       background: 'whitesmoke',
-      position: 'absolute'
+      position: props.position === 'absolute' ? 'absolute' : 'static'
     }}
     {...props}
   >

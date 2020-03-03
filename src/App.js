@@ -1,5 +1,10 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from 'react-router-dom'
 import { AuthCheck } from 'reactfire'
 import { SnackbarProvider } from 'notistack'
 
@@ -24,23 +29,22 @@ function App() {
             <AdaNav />
           </AuthCheck>
           <SnackbarProvider autoHideDuration={2000} maxSnack={3}>
-            <SuperContainer>
-              <Switch>
-                <Route exact path="/">
-                  <AuthCheck fallback={<Login />}>
-                    <Redirect to="/pasos/empecemos" />
-                  </AuthCheck>
-                </Route>
-                <Route path="/admin">
-                  <Admin />
-                </Route>
-                <Route path="/pasos/:step">
-                  <AuthCheck fallback={<Login />}>
+            <AuthCheck fallback={<Login />}>
+              <SuperContainer>
+                <Switch>
+                  <Route path="/admin">
+                    <Admin />
+                  </Route>
+
+                  <Route exact path="/">
                     <Stepper />
-                  </AuthCheck>
-                </Route>
-              </Switch>
-            </SuperContainer>
+                  </Route>
+                  <Route path="/pasos/:step">
+                    <Stepper />
+                  </Route>
+                </Switch>
+              </SuperContainer>
+            </AuthCheck>
           </SnackbarProvider>
         </AdaTheme>
       </Router>

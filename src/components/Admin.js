@@ -5,11 +5,10 @@ import { SuperContainer, StepContainer } from 'components/UI/common'
 import MarkdownEditor from 'components/admin/MarkdownEditor'
 
 export default function Admin() {
-  const config = useConfig()
-  console.log(config)
+  const { docs: { intros } } = useConfig()
   return (
     <SuperContainer>
-      {Object.keys(config.docs).map(section => (
+      {Object.keys(intros).map(section => (
         <StepContainer key={section}>
           <Box p={2} maxWidth="xs" mb={2}>
             <Typography align="left" variant="body2" component="h2">
@@ -17,7 +16,7 @@ export default function Admin() {
             </Typography>
             <MarkdownEditor
               id={section}
-              markdown={config.docs[section] ? config.docs[section] : '""'}
+              markdown={intros[section] ? intros[section] : '""'}
             />
           </Box>
         </StepContainer>

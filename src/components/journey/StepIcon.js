@@ -11,14 +11,14 @@ const useStepIconStyles = makeStyles(theme => {
     root: {
       color: '#eaeaf0',
       display: 'flex',
-      height: '2em',
-      width: '2em',
+      height: '1.5em',
+      width: '1.5em',
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: '#ccc',
       zIndex: 1,
       borderRadius: '50%',
-      padding: '.75em',
+      padding: '.5em',
     },
     active: {
       backgroundImage:

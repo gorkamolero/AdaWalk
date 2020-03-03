@@ -158,6 +158,39 @@ const GlobalStyles = createGlobalStyle`
       filter: saturate(0);
     }
   }
+
+  /* // Anim! */
+  @keyframes bounce {
+    0% {
+      transform: translateY(0);
+      animation-timing-function: ease-out;
+    }
+    20% {
+      transform: translateY(-45px);
+      animation-timing-function: ease-out;
+    }
+    65% {
+      transform: translateY(-12px);
+      animation-timing-function: ease-out;
+    }
+    40%,
+    75%,
+    100% {
+      transform: translateY(0px);
+      animation-timing-function: ease-out;
+    }
+  }
+
+  .ada.win {
+    animation: bounce 1s infinite;
+  }
+
+  .fader {
+    transition: opacity 1s ease;
+    &.fade {
+      opacity: 0;
+    }
+  }
 `
 
 export default GlobalStyles

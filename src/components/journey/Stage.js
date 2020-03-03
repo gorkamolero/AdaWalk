@@ -1,14 +1,23 @@
 import React from 'react';
+import { useFullUser } from 'hooks'
 import Ada from './Ada';
 import { Container } from '@material-ui/core'
 
 const Stage = ({ pos, totalMoves, adaBackwards }) => {
-
+  const user = useFullUser()
+  React.useEffect(() => {
+    if (user.profile.win) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+    }
+  }, [user])
   return (
     <Container
       className="stage"
       style={{
-        overflow: 'hidden',
+        // overflow: 'hidden',
         position: 'absolute',
         top: 0,
         width: '100%',
@@ -16,7 +25,7 @@ const Stage = ({ pos, totalMoves, adaBackwards }) => {
         zIndex: 999
       }}
     >
-      <Ada pos={pos} totalMoves={totalMoves} backwards={adaBackwards} />
+      <Ada mode={user.profile.win ? 'win' : 'walk'} pos={pos} totalMoves={totalMoves} backwards={adaBackwards} />
     </Container>
   )
 }

@@ -5,13 +5,13 @@ import ArenguForm from 'components/UI/ArenguForm'
 import { Box, Typography, Divider, Tabs, Tab, Button } from '@material-ui/core'
 import TabPanel from 'components/UI/TabPanel'
 import MarkDown from 'components/UI/MarkDown'
-import { useConfig } from 'hooks'
+import { useConfig, useArenguHiddenFields } from 'hooks'
 
 export default function HTMLCSS() {
   const user = useFullUser()
-  let { docs, evaluacion: { tests } } = useConfig()
+  let { docs: { intros: docs }, evaluacion: { tests } } = useConfig()
   const [tab, setTab] = React.useState(0)
-  const hiddenFields = [{key: 'email', value: user.email}]
+  const hiddenFields = useArenguHiddenFields()
 
   if (user.profile.htmlScore > Number(tests['html-y-css'])) {
     return <Redirect to="/pasos/javascript" />

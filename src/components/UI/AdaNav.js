@@ -7,6 +7,7 @@ import SpeedDial from '@material-ui/lab/SpeedDial'
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon'
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction'
 import { Settings, PowerSettingsNew as LogOut } from '@material-ui/icons'
+import { useFullUser } from 'hooks'
 
 const useStyles = makeStyles(theme => ({
   speedDial: {
@@ -18,22 +19,35 @@ const useStyles = makeStyles(theme => ({
 
 
 const SuperNav = () => {
+  const user = useFullUser()
   const history = useHistory()
   const auth = useAuth()
   const [open, setOpen] = useState(false)
   const classes = useStyles()
-  const signOut = () => auth.signOut()
-
-  const actions = [
-    // { icon: <Cal fontSize="inherit" />, name: 'Calendario', click: () => setLocation('/calendario') },
-    { icon: <Settings fontSize="inherit" />, name: 'Perfil', click: () => history.push('/admin') },
-    { icon: <LogOut fontSize="inherit" />, name: 'Cerrar sesión', click: () => signOut() }
-  ]
-
 
   const handleClick = () => setOpen(prevOpen => !prevOpen);
   const handleClose = () => setOpen(false)
   const handleOpen = () => setOpen(true)
+
+  const userActions = [
+    {
+      icon: <LogOut fontSize="inherit" />,
+      name: 'Cerrar sesión',
+      click: () => auth.signOut()
+    }
+  ]
+
+  const adminActions = [
+    {
+      icon: <Settings fontSize="inherit" />,
+      name: 'Admin',
+      click: () => history.push('/admin')
+    }
+  ]
+
+  const actions = user.isAdmin
+    ? [...userActions, ...adminActions]
+    : userActions
 
   return (
     <SpeedDial

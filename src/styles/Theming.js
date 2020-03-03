@@ -97,6 +97,11 @@ const theme = createMuiTheme({
         background: 'transparent'
       }
     },
+    MuiStepLabel: {
+      alternativeLabel: {
+        marginTop: '4px !important'
+      }
+    },
     MuiLinearProgress: {
       root: {
         zIndex: 999999,

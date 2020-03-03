@@ -33,7 +33,7 @@ export default function StepBlocker({ status }) {
     }
   }
   return (
-    <StepContainer m={2} p={4}>
+    <StepContainer position="absolute" m={2} p={4}>
       <Box p={2}>
         <Typography variant="h5" component="h1">
           Actualiza tu perfil

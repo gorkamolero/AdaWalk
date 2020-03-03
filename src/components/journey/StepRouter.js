@@ -11,7 +11,7 @@ import EntrevistaPersonal from './Steps/EntrevistaPersonal'
 
 const AnimatedRoute = props => (
   <Route {...props}>
-    <StepContainer>{props.children}</StepContainer>
+    <StepContainer position="absolute">{props.children}</StepContainer>
   </Route>
 )
 

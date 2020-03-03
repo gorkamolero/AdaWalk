@@ -6,7 +6,7 @@ import MarkDown from 'components/UI/MarkDown'
 import { Steps } from 'config'
 
 export default function Intro() {
-  let { docs: { intro } } = useConfig()
+  let { docs: { intros: { intro }} } = useConfig()
   return (
     <Box p={4} textAlign="left">
       <MarkDown>{intro}</MarkDown>
