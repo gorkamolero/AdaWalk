@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
 } from 'react-router-dom'
 import { AuthCheck } from 'reactfire'
 import { SnackbarProvider } from 'notistack'
@@ -39,6 +38,7 @@ function App() {
                   <Route exact path="/">
                     <Stepper />
                   </Route>
+
                   <Route path="/pasos/:step">
                     <Stepper />
                   </Route>
