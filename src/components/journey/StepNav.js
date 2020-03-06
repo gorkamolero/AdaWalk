@@ -46,7 +46,7 @@ export default function StepNav({ step }) {
               onClick={() => history.push(`/pasos/${Steps[label]}`)}
             >
               <StepLabel StepIconComponent={StepIcon}>
-                <Typography variant="h6">{label}</Typography>
+                <Typography variant="h5">{label}</Typography>
               </StepLabel>
             </Step>
           )

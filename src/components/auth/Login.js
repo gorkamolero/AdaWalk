@@ -61,7 +61,7 @@ export default function LoginForm() {
           window.localStorage.removeItem('emailForSignIn')
         }
       } catch (err) {
-        enqueueSnackbar('Error en la URL: ' + err.message, { variant: 'error' })
+        // enqueueSnackbar('Error en la URL: ' + err.message, { variant: 'error' })
       }
     }
     confirmSignIn(href)

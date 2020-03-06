@@ -56,7 +56,7 @@ export function useFullUser() {
     if (user.profile.win) {
       setTimeout(() => userDetailsRef.update({ win: false }), 7000)
     }
-  }, [user.profile.win])
+  }, [user.profile.win, userDetailsRef])
 
   return user
 }

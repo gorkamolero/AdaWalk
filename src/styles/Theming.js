@@ -45,7 +45,7 @@ const theme = createMuiTheme({
     h3: {
       fontSize: '1.2rem'
     },
-    h6: {
+    h5: {
       fontFamily: '"Bangers", "Product Sans", "Helvetica", "Arial", sans-serif',
       fontSize: '1rem',
       fontWeight: 'lighter',

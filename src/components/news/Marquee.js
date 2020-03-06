@@ -5,7 +5,7 @@ import Marquee from 'react-smooth-marquee'
 export default function JustMarquee() {
   return (
     <Marquee velocity={0.06}>
-      <Typography variant="h6">
+      <Typography variant="h5">
         bot Free Darko HuffPo Article Skimmer Bill Keller libel lawyer social
         media Demand Media David Cohn, newspaper data visualization Facebook
         Fuego collaboration Innovator's Dilemma hot news doctrine. analytics

@@ -31,7 +31,7 @@ export default function JS() {
       <Box p={4}>
         <TabPanel value={tab} index={0}>
           <Box textAlign="left">
-            <MarkDown>{docs['javascript']}</MarkDown>
+            <MarkDown>{docs['3-javascript']}</MarkDown>
             <Button
               color="primary"
               variant="contained"

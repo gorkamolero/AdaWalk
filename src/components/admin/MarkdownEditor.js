@@ -1,15 +1,32 @@
 import React from 'react'
-import { useFirestore } from 'reactfire'
+import { useFirestore, useFirestoreDocData } from 'reactfire'
+import { useSnackbar } from 'notistack'
 import Editor from 'rich-markdown-editor'
 import { Box, Button } from '@material-ui/core'
 
 
 const MarkdownEditor = ({id, markdown}) => {
+  const { enqueueSnackbar } = useSnackbar()
   const ref = useFirestore().doc(`config/docs`)
+  const docs = useFirestoreDocData(ref)
+
   const [md, setMarkdown] = React.useState('')
   
   const onSave = async (e) => {
-    ref.update({ [id]: md })
+    const intros = {
+      ...docs.intros,
+      [id]: md
+    }
+    try {
+      await ref.update({ intros })
+      enqueueSnackbar(`Éxito!`, {
+        variant: 'success'
+      })
+    } catch(err) {
+      enqueueSnackbar(`Error: ${err.message}`, {
+        variant: 'error'
+      })
+    }
   }
   const onChange = (value) => {
     const markdown = JSON.stringify(value())

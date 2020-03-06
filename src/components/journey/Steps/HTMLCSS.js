@@ -33,7 +33,7 @@ export default function HTMLCSS() {
       <Box p={4}>
         <TabPanel value={tab} index={0}>
           <Box textAlign="left">
-            <MarkDown>{docs['html-y-css']}</MarkDown>
+            <MarkDown>{docs['2-html-y-css']}</MarkDown>
             <Button
               color="primary"
               variant="contained"

@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom'
 import { AuthCheck } from 'reactfire'
 import { SnackbarProvider } from 'notistack'
+import { ConfirmProvider } from 'material-ui-confirm'
 
 import GlobalStyles from 'styles/GlobalStyles'
 import 'App.css'
@@ -28,23 +29,25 @@ function App() {
             <AdaNav />
           </AuthCheck>
           <SnackbarProvider autoHideDuration={2000} maxSnack={3}>
-            <AuthCheck fallback={<Login />}>
-              <SuperContainer>
-                <Switch>
-                  <Route path="/admin">
-                    <Admin />
-                  </Route>
+            <ConfirmProvider>
+              <AuthCheck fallback={<Login />}>
+                <SuperContainer>
+                  <Switch>
+                    <Route path="/admin">
+                      <Admin />
+                    </Route>
 
-                  <Route exact path="/">
-                    <Stepper />
-                  </Route>
+                    <Route exact path="/">
+                      <Stepper />
+                    </Route>
 
-                  <Route path="/pasos/:step">
-                    <Stepper />
-                  </Route>
-                </Switch>
-              </SuperContainer>
-            </AuthCheck>
+                    <Route path="/pasos/:step">
+                      <Stepper />
+                    </Route>
+                  </Switch>
+                </SuperContainer>
+              </AuthCheck>
+            </ConfirmProvider>
           </SnackbarProvider>
         </AdaTheme>
       </Router>
