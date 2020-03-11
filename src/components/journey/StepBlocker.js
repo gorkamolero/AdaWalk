@@ -1,10 +1,11 @@
 import React from 'react'
-import { useConfig } from 'hooks'
+import { useConfig, useArenguHiddenFields } from 'hooks'
 import { useFullUser } from 'hooks'
-import { Box, Typography } from '@material-ui/core'
+import { Box, Typography, Divider } from '@material-ui/core'
 import { StepContainer } from 'components/UI/common'
 import MarkDown from 'components/UI/MarkDown'
 import ArenguForm from 'components/UI/ArenguForm'
+
 
 export default function StepBlocker({ status }) {
   const user = useFullUser()
@@ -14,35 +15,39 @@ export default function StepBlocker({ status }) {
   } = useConfig()
 
   const getStatusFormalName = () => Object.keys(AllStatus).find(key => AllStatus[key] === status)
+
+  const totalBlock = [
+    AllStatus.NOT_MINIMUM_STUDIES,
+    AllStatus.NOT_IN_AGE_RANGE,
+    AllStatus.WITH_2_APPLICATIONS
+  ].includes(user.profile.status)
+
   const options = {
-    hiddenFields: [{ uid: user }],
+    hiddenFields: useArenguHiddenFields(),
     fields: {
-      email: user.profile.email,
-      nombre: user.profile.name,
-      apellidos: user.profile.lastName,
-      phone: user.profile.telefono,
-      zip: user.profile.cp,
-      birthdate: user.profile.birdthdate,
-      estudios: user.profile.studies,
-      dequesonestudios: user.profile.studiesDescription,
-      programacion: user.profile.prevKnowledge,
-      situacionLaboral: user.profile.workStatus,
-      permisoDeTrabajo: user.profile.isAbleToWorkInSpain,
-      horario: user.profile.preferredSchedule,
-      comoNosHasConocido: user.profile.referral,
+      workStatus: user.profile.workStatus,
+      isAbleToWorkInSpain: user.profile.isAbleToWorkInSpain,
     }
   }
   return (
     <StepContainer position="absolute" m={2} p={4}>
-      <Box p={2}>
-        <Typography variant="h5" component="h1">
+      <Box p={2} mb={!totalBlock ? 2 : 0}>
+        <Typography variant="h6" component="h1">
           Actualiza tu perfil
         </Typography>
         {<MarkDown>{StatusDocs[getStatusFormalName()]}</MarkDown>}
-        <Box>
-          <ArenguForm id="158316347788959567" {...options} />
-        </Box>
       </Box>
+      {
+        !totalBlock && (
+          <>
+            <Divider />
+            <Box p={2}>
+              
+              <ArenguForm id="158316347788959567" {...options} />
+            </Box>
+          </>
+        )
+      }
     </StepContainer>
   )
 }

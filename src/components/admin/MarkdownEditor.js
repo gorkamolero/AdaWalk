@@ -5,7 +5,7 @@ import Editor from 'rich-markdown-editor'
 import { Box, Button } from '@material-ui/core'
 
 
-const MarkdownEditor = ({id, markdown}) => {
+const MarkdownEditor = ({id, markdown, collection}) => {
   const { enqueueSnackbar } = useSnackbar()
   const ref = useFirestore().doc(`config/docs`)
   const docs = useFirestoreDocData(ref)
@@ -13,12 +13,12 @@ const MarkdownEditor = ({id, markdown}) => {
   const [md, setMarkdown] = React.useState('')
   
   const onSave = async (e) => {
-    const intros = {
-      ...docs.intros,
+    const newCollection = {
+      ...docs[collection],
       [id]: md
     }
     try {
-      await ref.update({ intros })
+      await ref.update({ [collection]: newCollection })
       enqueueSnackbar(`Éxito!`, {
         variant: 'success'
       })

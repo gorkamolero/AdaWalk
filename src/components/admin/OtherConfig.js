@@ -55,7 +55,7 @@ export default function OtherConfig() {
         </AdminCard>
       </Grid>
       {[1,2,3,4,5,6,7,9].map((el) => (
-        <Grid item xs={4}>
+        <Grid key={el} item xs={4}>
           <AdminCard>
             <CardContent>
               <Typography color="textSecondary" gutterBottom>

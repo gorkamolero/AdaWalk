@@ -16,12 +16,12 @@ const Ada = ({mode, pos, totalMoves}) => {
   const [shouldMove, setShouldMove] = useState(false)
   const [timing] = useState(3)
 
-  // useEffect(() => {
-  //   if (mode === 'walk') {
-  //     setShouldMove(true)
-  //     setTimeout(() => setShouldMove(false), timing * 1000)
-  //   }
-  // }, [pos, timing, mode])
+  useEffect(() => {
+    if (mode === 'walk') {
+      setShouldMove(true)
+      setTimeout(() => setShouldMove(false), timing * 1000)
+    }
+  }, [pos, timing, mode])
 
 
   let history = useHistory()

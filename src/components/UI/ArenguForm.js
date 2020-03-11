@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
+// import { useHistory, useParams } from 'react-router-dom'
 
 const ARENGU_SDK_LOADED = 'af-init'
 
@@ -8,6 +9,7 @@ const ARENGU_SDK_LOADED = 'af-init'
  */
 export const ArenguForm = ({ id, hiddenFields, fields }) => {
   const container = useRef()
+  // let history = useHistory()
 
   useEffect(() => {
     let listener = null
