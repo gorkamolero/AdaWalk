@@ -1,6 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { useFullUser } from 'hooks'
+import { useGlobalState } from 'hooks/useGlobalState'
 import ArenguForm from 'components/UI/ArenguForm'
 import { Box, Typography, Divider, Tabs, Tab, Button } from '@material-ui/core'
 import TabPanel from 'components/UI/TabPanel'
@@ -9,6 +10,7 @@ import { useConfig, useArenguHiddenFields } from 'hooks'
 
 export default function HTMLCSS() {
   const user = useFullUser()
+  const globalState = useGlobalState()
   let { docs: { intros: docs }, evaluacion: { tests } } = useConfig()
   const [tab, setTab] = React.useState(0)
   const hiddenFields = useArenguHiddenFields()
@@ -55,7 +57,7 @@ export default function HTMLCSS() {
           </Box>
           <Divider />
           <Box mt={4}>
-            <ArenguForm hiddenFields={hiddenFields} id="158261947405655821" />
+            <ArenguForm hiddenFields={hiddenFields} id={(globalState.demoMode && user.isAdmin) ? '158400475639718311' : '158261947405655821'} />
           </Box>
         </TabPanel>
       </Box>

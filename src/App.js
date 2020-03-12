@@ -5,6 +5,7 @@ import {
   Route,
 } from 'react-router-dom'
 import { AuthCheck } from 'reactfire'
+import { GlobalStateProvider } from 'hooks/useGlobalState'
 import { SnackbarProvider } from 'notistack'
 import { ConfirmProvider } from 'material-ui-confirm'
 
@@ -21,36 +22,38 @@ import Stepper from 'components/journey/Stepper'
 function App() {
   return (
     <div className="App">
-      <Router>
-        <AdaTheme>
-          <GlobalStyles />
-          <News />
-          <AuthCheck>
-            <AdaNav />
-          </AuthCheck>
-          <SnackbarProvider autoHideDuration={2000} maxSnack={3}>
-            <ConfirmProvider>
-              <AuthCheck fallback={<Login />}>
-                <SuperContainer>
-                  <Switch>
-                    <Route path="/admin">
-                      <Admin />
-                    </Route>
+      <GlobalStateProvider>
+        <Router>
+          <AdaTheme>
+            <GlobalStyles />
+            <News />
+            <AuthCheck>
+              <AdaNav />
+            </AuthCheck>
+            <SnackbarProvider autoHideDuration={2000} maxSnack={3}>
+              <ConfirmProvider>
+                <AuthCheck fallback={<Login />}>
+                  <SuperContainer>
+                    <Switch>
+                      <Route path="/admin">
+                        <Admin />
+                      </Route>
 
-                    <Route exact path="/">
-                      <Stepper />
-                    </Route>
+                      <Route exact path="/">
+                        <Stepper />
+                      </Route>
 
-                    <Route path="/pasos/:step">
-                      <Stepper />
-                    </Route>
-                  </Switch>
-                </SuperContainer>
-              </AuthCheck>
-            </ConfirmProvider>
-          </SnackbarProvider>
-        </AdaTheme>
-      </Router>
+                      <Route path="/pasos/:step">
+                        <Stepper />
+                      </Route>
+                    </Switch>
+                  </SuperContainer>
+                </AuthCheck>
+              </ConfirmProvider>
+            </SnackbarProvider>
+          </AdaTheme>
+        </Router>
+      </GlobalStateProvider>
     </div>
   )
 }

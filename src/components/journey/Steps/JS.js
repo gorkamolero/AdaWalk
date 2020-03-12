@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react'
+import { useFullUser } from 'hooks'
+import { useGlobalState } from 'hooks/useGlobalState'
 import microlight from 'microlight'
 import ArenguForm from 'components/UI/ArenguForm'
 import { Box, Typography, Divider, Tabs, Tab, Button } from '@material-ui/core'
@@ -7,6 +9,8 @@ import MarkDown from 'components/UI/MarkDown'
 import { useConfig, useArenguHiddenFields } from 'hooks'
 
 export default function JS() {
+  const user = useFullUser()
+  const globalState = useGlobalState()
   let { docs: { intros: docs } } = useConfig()
   const [tab, setTab] = React.useState(0)
   const hiddenFields = useArenguHiddenFields()
@@ -53,7 +57,7 @@ export default function JS() {
           </Box>
           <Divider />
           <Box mt={4}>
-            <ArenguForm hiddenFields={hiddenFields} id="158262184424627629" />
+            <ArenguForm hiddenFields={hiddenFields} id={(globalState.demoMode && user.isAdmin) ? '158400745794914363' : '158262184424627629'} />
           </Box>
         </TabPanel>
       </Box>

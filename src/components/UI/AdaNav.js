@@ -6,9 +6,10 @@ import { makeStyles } from '@material-ui/styles'
 import SpeedDial from '@material-ui/lab/SpeedDial'
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon'
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction'
-import { Settings, PowerSettingsNew as LogOut } from '@material-ui/icons'
+import { Settings, PowerSettingsNew as LogOut, Visibility, VisibilityOff } from '@material-ui/icons'
 import { AdaIcon } from 'components/UI/CustomIcons'
 import { useFullUser } from 'hooks'
+import { useGlobalState } from 'hooks/useGlobalState'
 
 const useStyles = makeStyles(theme => ({
   speedDial: {
@@ -26,6 +27,10 @@ const SuperNav = () => {
   const user = useFullUser()
   const history = useHistory()
   const auth = useAuth()
+  const globalState = useGlobalState()
+
+  console.log('STATE IN NAV', globalState)
+
   const [open, setOpen] = useState(false)
   const classes = useStyles()
 
@@ -51,7 +56,12 @@ const SuperNav = () => {
       icon: <AdaIcon className={classes.ada} />,
       name: 'Journey',
       click: () => history.push('/')
-    }
+    },
+    {
+      icon: globalState.demoMode ? <Visibility fontSize="inherit" /> : <VisibilityOff fontSize="inherit" />,
+      name: globalState.demoMode ? 'Terminar modo demo' : 'Iniciar modo demo',
+      click: () => globalState.setDemoMode({ demoMode: !globalState.demoMode })
+    },
   ]
 
   const actions = user.isAdmin

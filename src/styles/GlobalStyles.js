@@ -191,6 +191,25 @@ const GlobalStyles = createGlobalStyle`
       opacity: 0;
     }
   }
+
+  .demoMode {
+    background: linear-gradient(270deg, var(--adalabBlue), var(--adalabRedTrans));
+    background-size: 400% 400%;
+    animation: DemoMode 10s ease infinite;
+  }
+
+
+  .nonDemoMode {
+    background: linear-gradient(270deg, var(--adalabBlueMid), var(--adalabBlue));
+    background-size: 400% 400%;
+    animation: DemoMode 30s ease infinite;
+  }
+
+  @keyframes DemoMode {
+      0% { background-position: 0% 50% }
+      50% { background-position: 100% 50% }
+      100% { background-position: 0% 50% }
+  }
 `
 
 export default GlobalStyles
