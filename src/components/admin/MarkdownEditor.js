@@ -30,7 +30,6 @@ const MarkdownEditor = ({id, markdown, collection}) => {
   }
   const onChange = (value) => {
     const markdown = JSON.stringify(value())
-    console.log('YOLLOOOOO', markdown)
     setMarkdown(markdown)
     // console.log(JSON.parse(blob))
     // .replace(/\//g, '\\/');

@@ -7,6 +7,7 @@ import SpeedDial from '@material-ui/lab/SpeedDial'
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon'
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction'
 import { Settings, PowerSettingsNew as LogOut } from '@material-ui/icons'
+import { AdaIcon } from 'components/UI/CustomIcons'
 import { useFullUser } from 'hooks'
 
 const useStyles = makeStyles(theme => ({
@@ -15,6 +16,9 @@ const useStyles = makeStyles(theme => ({
     bottom: theme.spacing(2),
     right: theme.spacing(3),
   },
+  ada: {
+    fontSize: '120%'
+  }
 }))
 
 
@@ -42,6 +46,11 @@ const SuperNav = () => {
       icon: <Settings fontSize="inherit" />,
       name: 'Admin',
       click: () => history.push('/admin')
+    },
+    {
+      icon: <AdaIcon className={classes.ada} />,
+      name: 'Journey',
+      click: () => history.push('/')
     }
   ]
 

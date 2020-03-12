@@ -10,6 +10,7 @@ import Intro from './Steps/Intro'
 import HTMLCSS from './Steps/HTMLCSS'
 import JS from './Steps/JS'
 import EntrevistaPersonal from './Steps/EntrevistaPersonal'
+import Proctoring from './Steps/Proctoring'
 
 const AnimatedRoute = props => (
   <Route {...props}>
@@ -28,17 +29,15 @@ export default function Stepper() {
     <StepBlocker status={user.profile.status} />
   )
 
-  if (user.isAdmin) return <Redirect to='/admin' />
+  // if (user.isAdmin) return <Redirect to='/admin' />
 
   return (
     <>
       <StepNav step={step} />
       <br />
-      <Redirect to={stepper} />
+      {user.isAdmin || <Redirect to={stepper} />}
       
-      {user.profile.win && (
-        <AdaWin win={user.profile.win} />
-      )}
+      {user.profile.win && <AdaWin win={user.profile.win} />}
       
       <AnimatePresence>
         <Switch location={location} key={location.pathname}>
@@ -50,6 +49,9 @@ export default function Stepper() {
           </AnimatedRoute>
           <AnimatedRoute path="/pasos/javascript">
             <JS />
+          </AnimatedRoute>
+          <AnimatedRoute path="/pasos/tests-presenciales">
+            <Proctoring />
           </AnimatedRoute>
           <AnimatedRoute path="/pasos/entrevista">
             <EntrevistaPersonal />

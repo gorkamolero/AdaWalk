@@ -65,7 +65,7 @@ export function useStepper() {
   const user = useFullUser()
   const config = useConfig()
 
-  if (user.isAdmin || !user.profile) return '/admin'
+  if (user.isAdmin) return '/admin'
 
   if (!user.profile.progress) return '/pasos/empecemos'
   if (user.profile.progress === 'html') {
@@ -79,6 +79,7 @@ export function useStepper() {
     const jsScore = parseInt(user.profile.jsScore);
     if (jsScore > Number(config.evaluacion.tests['javascript'])) return Steps['English Test']
   }
+  if (user.profile.progress === 'proctoring') return Steps['Proctoring']
   else return '/'
 }
 
