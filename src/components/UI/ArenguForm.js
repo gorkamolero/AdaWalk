@@ -26,7 +26,6 @@ export const ArenguForm = ({ id, hiddenFields, fields }) => {
     }
 
     const setHiddenFields = form => {
-      console.log('Hidden fields', hiddenFields)
       if (hiddenFields == null) {
         return
       }
