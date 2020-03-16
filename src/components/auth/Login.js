@@ -1,16 +1,19 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
-import { useAuth } from 'reactfire'
+import { useAuth, useFunctions } from 'reactfire'
 import { useSnackbar } from 'notistack'
 import { useConfirm } from 'material-ui-confirm'
 import { FixedLinearProgress } from 'uno-material-ui'
 
+import base64 from 'base-64'
 import { SuperCenter } from 'components/UI/common'
 import { TextField, Box, Button, Container } from '@material-ui/core'
 import AdaHeader from 'components/UI/AdaHeader'
 
 
 export default function LoginForm() {
+  const functions = useFunctions()
+
   const location = useLocation()
   const auth = useAuth()
   const confirm = useConfirm()
@@ -28,14 +31,13 @@ export default function LoginForm() {
       handleCodeInApp: true
     }
 
-    const {dbUser, authUser} = await fetch('https://us-central1-adalab-platform.cloudfunctions.net/main/candy/exists', {
-      method: 'POST',
-      mode: 'no-cors'
-    })
+    const doesUserExist = functions.httpsCallable('doesUserExist')
+    const response = await doesUserExist(email)
+
+    const { dbUser, authUser } = response.data
     
     if (dbUser && authUser) {
       try {
-
         await auth.sendSignInLinkToEmail(email, actionCodeSettings)
         window.localStorage.setItem('emailForSignIn', email)
         setEmailSent(true)

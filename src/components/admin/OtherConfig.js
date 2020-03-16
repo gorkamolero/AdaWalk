@@ -19,7 +19,6 @@ const SuperTextField = styled(TextField)`
 export default function OtherConfig() {
   const config = useConfig()
   const confirm = useConfirm()
-  console.log('YOLO', config)
 
   const onConfirm = async () => {
     await confirm({
