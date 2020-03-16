@@ -2,6 +2,7 @@ import React from 'react'
 import { useLocation } from 'react-router-dom'
 import { useAuth } from 'reactfire'
 import { useSnackbar } from 'notistack'
+import { useConfirm } from 'material-ui-confirm'
 import { FixedLinearProgress } from 'uno-material-ui'
 
 import { SuperCenter } from 'components/UI/common'
@@ -12,6 +13,7 @@ import AdaHeader from 'components/UI/AdaHeader'
 export default function LoginForm() {
   const location = useLocation()
   const auth = useAuth()
+  const confirm = useConfirm()
   const [loading, setLoading] = React.useState(false)
 
   const [email, setEmail] = React.useState('')
@@ -25,20 +27,45 @@ export default function LoginForm() {
       url: 'http://localhost:3000',
       handleCodeInApp: true
     }
-    try {
-      await auth.sendSignInLinkToEmail(email, actionCodeSettings)
-      window.localStorage.setItem('emailForSignIn', email)
-      setEmailSent(true)
-      enqueueSnackbar(`Te hemos enviado un email a ${email}`, {
-        variant: 'success'
+
+    const {dbUser, authUser} = await fetch('https://us-central1-adalab-platform.cloudfunctions.net/main/candy/exists', {
+      method: 'POST',
+      mode: 'no-cors'
+    })
+    
+    if (dbUser && authUser) {
+      try {
+
+        await auth.sendSignInLinkToEmail(email, actionCodeSettings)
+        window.localStorage.setItem('emailForSignIn', email)
+        setEmailSent(true)
+        enqueueSnackbar(`Te hemos enviado un email a ${email}`, {
+          variant: 'success'
+        })
+      } catch (err) {
+        enqueueSnackbar('Error creando link: ' + err.message, {
+          variant: 'error'
+        })
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    else {
+      await confirm({
+        title: 'Email no he encontrado',
+        description: `No hemos encontrado un usuario correspondiente a ${email}`,
+        dialogProps: {
+          maxWidth: 'xs'
+        }
       })
-    } catch (err) {
-      enqueueSnackbar('Error creando link: ' + err.message, {
+
+      enqueueSnackbar(`No encontramos usuario ${email}`, {
         variant: 'error'
       })
-    } finally {
       setLoading(false)
     }
+    
   }
 
   const onSubmit = (e) => {

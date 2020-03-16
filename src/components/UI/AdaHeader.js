@@ -17,7 +17,7 @@ const IndoHeader = ({ icon, title, children }) => {
         </Avatar>
       )}
 
-      <Typography component="h1" variant="h5">
+      <Typography component="h1" variant="h2">
         {title}
       </Typography>
 
