@@ -29,8 +29,6 @@ const SuperNav = () => {
   const auth = useAuth()
   const globalState = useGlobalState()
 
-  console.log('STATE IN NAV', globalState)
-
   const [open, setOpen] = useState(false)
   const classes = useStyles()
 

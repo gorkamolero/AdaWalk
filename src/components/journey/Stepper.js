@@ -29,6 +29,10 @@ export default function Stepper() {
     <StepBlocker status={user.profile.status} />
   )
 
+  if (user.profile && user.profile.admission) return (
+    <StepBlocker status={user.profile.admission} />
+  )
+
   // if (user.isAdmin) return <Redirect to='/admin' />
 
   return (

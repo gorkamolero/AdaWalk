@@ -26,6 +26,7 @@ export default function LoginForm() {
 
   const sendEmailLink = async () => {
     setLoading(true)
+    
     const actionCodeSettings = {
       url: 'http://localhost:3000',
       handleCodeInApp: true

@@ -6,13 +6,15 @@ import { StepContainer } from 'components/UI/common'
 import MarkDown from 'components/UI/MarkDown'
 import ArenguForm from 'components/UI/ArenguForm'
 
-
 export default function StepBlocker({ status }) {
   const user = useFullUser()
   const {
-    candidates: { status: AllStatus },
+    candidates: { status: configStatus, admission },
     docs: { status: StatusDocs }
   } = useConfig()
+
+  const AllStatus = { ...configStatus, ...admission }
+
 
   const getStatusFormalName = () => Object.keys(AllStatus).find(key => AllStatus[key] === status)
 
@@ -21,6 +23,12 @@ export default function StepBlocker({ status }) {
     AllStatus.NOT_IN_AGE_RANGE,
     AllStatus.WITH_2_APPLICATIONS
   ].includes(user.profile.status)
+
+  const admissionBlock = [
+    AllStatus.NOT_ADMITTED_TEST_ONLINE,
+    AllStatus.NOT_ADMITTED_PROCTORING,
+    AllStatus.NOT_ADMITTED_INTERVIEW
+  ].includes(status)
 
   const options = {
     hiddenFields: useArenguHiddenFields(),
@@ -32,22 +40,22 @@ export default function StepBlocker({ status }) {
   return (
     <StepContainer position="absolute" m={2} p={4}>
       <Box p={2} mb={!totalBlock ? 2 : 0}>
-        <Typography variant="h6" component="h1">
-          Actualiza tu perfil
-        </Typography>
+        {!admissionBlock && (
+          <Typography variant="h6" component="h1">
+            Actualiza tu perfil
+          </Typography>
+        )}
+
         {<MarkDown>{StatusDocs[getStatusFormalName()]}</MarkDown>}
       </Box>
-      {
-        !totalBlock && (
-          <>
-            <Divider />
-            <Box p={2}>
-              
-              <ArenguForm id="158316347788959567" {...options} />
-            </Box>
-          </>
-        )
-      }
+      {!totalBlock && !admissionBlock && (
+        <>
+          <Divider />
+          <Box p={2}>
+            <ArenguForm id="158316347788959567" {...options} />
+          </Box>
+        </>
+      )}
     </StepContainer>
   )
 }

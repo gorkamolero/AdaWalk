@@ -67,13 +67,14 @@ export function useStepper() {
 
   if (user.isAdmin) return '/admin'
 
-  if (!user.profile.progress) return '/pasos/empecemos'
+  if (!user.profile.progress || !user.profile.htmlScore) return '/pasos/empecemos'
   if (user.profile.progress === 'html') {
-    if (!user.profile.htmlScore) return (Steps['Introducción'])
-    else {
-      const htmlScore = parseInt(user.profile.htmlScore);
-      if (htmlScore >= Number(config.evaluacion.tests['html-y-css'])) return Steps['JS']
-    }
+    if (!user.profile.htmlScore) return Steps['Introducción']
+    // else {
+    //   const htmlScore = parseInt(user.profile.htmlScore);
+    //   if (htmlScore >= Number(config.evaluacion.tests['html-y-css'])) return Steps['JS']
+    // }
+    else return Steps['JS']
   }
   if (user.profile.progress === 'js') {
     const jsScore = parseInt(user.profile.jsScore);
