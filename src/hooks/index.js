@@ -70,12 +70,12 @@ export function useStepper() {
 
     if (!user.profile.progress || !user.profile.htmlScore) setRoute('/pasos/empecemos')
 
-    if (user.profile.progress === 'html') {
+    if (user.profile.progress &&  user.profile.progress === 'html') {
       if (!user.profile.htmlScore) setRoute(Steps['Introducción'])
       if (user.profile.htmlScore) setRoute(Steps['JS'])
     }
 
-    if (user.profile.progress.toLowerCase().trim() === 'proctoring') {
+    if (user.profile.progress && user.profile.progress.toLowerCase().trim() === 'proctoring') {
       console.log('WERE HERE')
       setRoute(Steps['Tests presenciales'])
     }
