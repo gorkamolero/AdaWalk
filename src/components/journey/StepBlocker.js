@@ -46,7 +46,9 @@ export default function StepBlocker({ status }) {
           </Typography>
         )}
 
-        {<MarkDown>{StatusDocs[getStatusFormalName()]}</MarkDown>}
+        <Box textAlign="left">
+          {<MarkDown>{StatusDocs[getStatusFormalName()]}</MarkDown>}
+        </Box>
       </Box>
       {!totalBlock && !admissionBlock && (
         <>
