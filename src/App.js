@@ -26,8 +26,8 @@ function App() {
         <Router>
           <AdaTheme>
             <GlobalStyles />
-            <News />
             <AuthCheck>
+              <News />
               <AdaNav />
             </AuthCheck>
             <SnackbarProvider autoHideDuration={2000} maxSnack={3}>

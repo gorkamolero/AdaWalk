@@ -4,8 +4,6 @@ import { useAuth, useFunctions } from 'reactfire'
 import { useSnackbar } from 'notistack'
 import { useConfirm } from 'material-ui-confirm'
 import { FixedLinearProgress } from 'uno-material-ui'
-
-import base64 from 'base-64'
 import { SuperCenter } from 'components/UI/common'
 import {
   TextField,
@@ -37,13 +35,16 @@ export default function LoginForm() {
       url: 'http://localhost:3000',
       handleCodeInApp: true
     }
+  
 
     const doesUserExist = functions.httpsCallable('doesUserExist')
     const response = await doesUserExist(email)
 
-    const { dbUser, authUser } = response.data
+    const { dbUser, admin } = response.data
+
+    console.log(response)
     
-    if (dbUser && authUser) {
+    if (dbUser || admin) {
       try {
         await auth.sendSignInLinkToEmail(email, actionCodeSettings)
         window.localStorage.setItem('emailForSignIn', email)
