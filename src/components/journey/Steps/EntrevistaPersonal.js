@@ -30,8 +30,6 @@ export default function EntrevistaPersonal() {
           El día {date.toLocaleDateString(navigator.language, dateOptions)}, a las { date.toLocaleTimeString(navigator.language, timeOptions) }
         </Typography>
       </Box>
-      <Divider />
-      
     </Box>
   )
   return (
