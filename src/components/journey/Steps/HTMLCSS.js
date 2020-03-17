@@ -11,7 +11,7 @@ import { useConfig, useArenguHiddenFields } from 'hooks'
 export default function HTMLCSS() {
   const user = useFullUser()
   const globalState = useGlobalState()
-  let { docs: { intros: docs }, evaluacion: { tests } } = useConfig()
+  let { docs: { intros: docs } } = useConfig()
   const [tab, setTab] = React.useState(0)
   const hiddenFields = useArenguHiddenFields()
 

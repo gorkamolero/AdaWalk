@@ -80,7 +80,7 @@ export function useStepper() {
       setRoute(Steps['Tests presenciales'])
     }
 
-  }, [])
+  }, [user.isAdmin, user.profile])
 
   console.log(route)
 

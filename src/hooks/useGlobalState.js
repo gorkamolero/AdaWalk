@@ -3,7 +3,7 @@ import React, { createContext, useReducer, useContext } from 'react'
 const GlobalStateContext = createContext()
 
 const SET_DEMO_MODE = 'SET DEMO MODE'
-const UNSET_DEMO_MODE = 'SET DEMO MODE'
+// const UNSET_DEMO_MODE = 'SET DEMO MODE'
 
 const initialState = {
   demoMode: false
