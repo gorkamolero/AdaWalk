@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { Redirect } from 'react-router-dom'
 import { useFullUser } from 'hooks'
 import { useGlobalState } from 'hooks/useGlobalState'
 import microlight from 'microlight'
@@ -18,6 +19,11 @@ export default function JS() {
   useEffect(() => {
     setTimeout(() => microlight.reset('af-field-hint'), 2000)
   }, [])
+
+  if (user.profile.jsScore && user.profile.progress.toLowerCase() === 'proctoring') {
+    return <Redirect to="/pasos/tests-presenciales" />
+  }
+
   return (
     <>
       <Tabs

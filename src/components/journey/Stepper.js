@@ -25,6 +25,11 @@ export default function Stepper() {
   const stepper = useStepper()
   console.log('Full user', user)
 
+  React.useEffect(() => {
+    console.log('DEVUELVE', stepper)
+  }, [stepper])
+
+  // Render
   if (user.profile && user.profile.status && !user.profile.status.includes('OK')) return (
     <StepBlocker status={user.profile.status} />
   )
@@ -33,13 +38,12 @@ export default function Stepper() {
     <StepBlocker status={user.profile.admission} />
   )
 
-  // if (user.isAdmin) return <Redirect to='/admin' />
-
   return (
     <>
       <StepNav step={step} />
       <br />
       {user.isAdmin || <Redirect to={stepper} />}
+
       
       {user.profile.win && <AdaWin win={user.profile.win} />}
       

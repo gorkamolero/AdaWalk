@@ -7,7 +7,13 @@ import { FixedLinearProgress } from 'uno-material-ui'
 
 import base64 from 'base-64'
 import { SuperCenter } from 'components/UI/common'
-import { TextField, Box, Button, Container } from '@material-ui/core'
+import {
+  TextField,
+  Box,
+  Button,
+  Container,
+  CircularProgress
+} from '@material-ui/core'
 import AdaHeader from 'components/UI/AdaHeader'
 
 
@@ -20,7 +26,7 @@ export default function LoginForm() {
   const [loading, setLoading] = React.useState(false)
 
   const [email, setEmail] = React.useState('')
-  const [, setEmailSent] = React.useState(false)
+  const [emailSent, setEmailSent] = React.useState(false)
   const { enqueueSnackbar } = useSnackbar()
 
 
@@ -123,8 +129,15 @@ export default function LoginForm() {
             variant="contained"
             color="primary"
             size="large"
+            disabled={emailSent}
           >
-            Comenzar
+            {emailSent ? (
+              'Comprueba tu email'
+            ) : !loading ? (
+              'Comenzar'
+            ) : (
+              <CircularProgress color="white" size={20} />
+            )}
           </Button>
         </Box>
         {/* {

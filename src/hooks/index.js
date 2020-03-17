@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   useUser,
   useFirestore,
@@ -62,26 +62,29 @@ export function useFullUser() {
 }
 
 export function useStepper() {
+  const [route, setRoute] = useState('/')
   const user = useFullUser()
-  const config = useConfig()
 
-  if (user.isAdmin) return '/admin'
+  useEffect(() => {
+    if (user.isAdmin && !user.profile) setRoute('/admin')
 
-  if (!user.profile.progress || !user.profile.htmlScore) return '/pasos/empecemos'
-  if (user.profile.progress === 'html') {
-    if (!user.profile.htmlScore) return Steps['Introducción']
-    // else {
-    //   const htmlScore = parseInt(user.profile.htmlScore);
-    //   if (htmlScore >= Number(config.evaluacion.tests['html-y-css'])) return Steps['JS']
-    // }
-    else return Steps['JS']
-  }
-  if (user.profile.progress === 'js') {
-    const jsScore = parseInt(user.profile.jsScore);
-    if (jsScore > Number(config.evaluacion.tests['javascript'])) return Steps['English Test']
-  }
-  if (user.profile.progress === 'proctoring') return Steps['Proctoring']
-  else return '/'
+    if (!user.profile.progress || !user.profile.htmlScore) setRoute('/pasos/empecemos')
+
+    if (user.profile.progress === 'html') {
+      if (!user.profile.htmlScore) setRoute(Steps['Introducción'])
+      if (user.profile.htmlScore) setRoute(Steps['JS'])
+    }
+
+    if (user.profile.progress.toLowerCase().trim() === 'proctoring') {
+      console.log('WERE HERE')
+      setRoute(Steps['Tests presenciales'])
+    }
+
+  }, [])
+
+  console.log(route)
+
+  return route
 }
 
 export function useArenguHiddenFields() {

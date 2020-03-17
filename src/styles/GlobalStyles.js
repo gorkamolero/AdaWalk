@@ -200,7 +200,7 @@ const GlobalStyles = createGlobalStyle`
 
 
   .nonDemoMode {
-    background: linear-gradient(270deg, var(--adalabBlueMid), var(--adalabBlue));
+    background: linear-gradient(270deg, var(--adalabBlueMid), var(--adalabBlueTrans));
     background-size: 400% 400%;
     animation: DemoMode 30s ease infinite;
   }

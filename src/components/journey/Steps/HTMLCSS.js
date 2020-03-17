@@ -15,7 +15,7 @@ export default function HTMLCSS() {
   const [tab, setTab] = React.useState(0)
   const hiddenFields = useArenguHiddenFields()
 
-  if (user.profile.htmlScore > Number(tests['html-y-css'])) {
+  if (user.profile.htmlScore) {
     return <Redirect to="/pasos/javascript" />
   }
   
