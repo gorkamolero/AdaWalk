@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import { useFullUser } from 'hooks'
 import { useGlobalState } from 'hooks/useGlobalState'
-import microlight from 'microlight'
 import ArenguForm from 'components/UI/ArenguForm'
 import { Box, Typography, Divider, Tabs, Tab, Button } from '@material-ui/core'
 import TabPanel from 'components/UI/TabPanel'
@@ -17,7 +16,12 @@ export default function JS() {
   const hiddenFields = useArenguHiddenFields()
 
   useEffect(() => {
-    setTimeout(() => microlight.reset('af-field-hint'), 2000)
+    
+    setTimeout(() => {
+      document.querySelectorAll('pre code').forEach(block => {
+        window.hljs.highlightBlock(block)
+      })
+    }, 2000)
   }, [])
 
   if (user.profile.jsScore && user.profile.progress.toLowerCase() === 'proctoring') {
@@ -63,7 +67,7 @@ export default function JS() {
           </Box>
           <Divider />
           <Box mt={4}>
-            <ArenguForm hiddenFields={hiddenFields} id={(globalState.demoMode && user.isAdmin) ? '158400745794914363' : '158262184424627629'} />
+            <ArenguForm hiddenFields={hiddenFields} id={(globalState.demoMode && user.isAdmin) ? '158455278927547836' : '158262184424627629'} />
           </Box>
         </TabPanel>
       </Box>

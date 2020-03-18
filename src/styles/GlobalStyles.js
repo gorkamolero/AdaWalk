@@ -210,6 +210,14 @@ const GlobalStyles = createGlobalStyle`
       50% { background-position: 100% 50% }
       100% { background-position: 0% 50% }
   }
+
+  .af-form {
+    img { max-width: 100%; }
+    code {
+      text-align: left;
+      font-size: 80%;
+    }
+  }
 `
 
 export default GlobalStyles
