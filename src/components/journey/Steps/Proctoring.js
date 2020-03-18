@@ -1,14 +1,52 @@
 import React from 'react'
-import { Box, Button, Tabs, Tab } from '@material-ui/core'
-import { useConfig } from 'hooks'
+import { Redirect } from 'react-router-dom'
+import { useFunctions } from 'reactfire'
+import { useSnackbar } from 'notistack'
+import { FixedLinearProgress } from 'uno-material-ui'
+import { Box, Button, Tabs, Tab, CircularProgress } from '@material-ui/core'
+import { useConfig, useFullUser } from 'hooks'
 import TabPanel from 'components/UI/TabPanel'
 import MarkDown from 'components/UI/MarkDown'
 
 export default function Proctoring() {
+  const [loading, setLoading] = React.useState(false)
+  const user = useFullUser()
+  const { enqueueSnackbar } = useSnackbar()
+  
   let { docs: { intros: docs } } = useConfig()
   const [tab, setTab] = React.useState(0)
+  
+  const collectResults = useFunctions().httpsCallable('collectResults')
+
+  const hayTests = user.profile.tests
+
+  if (hayTests) return <Redirect to="/pasos/entrevista-personal" />
+
+  const collectStudentResults = async () => {
+    setLoading(true)
+
+    let candidate
+    try {
+      candidate = await collectResults({
+        id: user.uid,
+        email: user.email,
+        demo: false
+        // true busca un estudiante random
+      })
+      enqueueSnackbar(`Resultados recogidos para ${user.email}`, {
+        variant: 'success'
+      })
+    } catch (err) {
+      enqueueSnackbar(err.message, { variant: 'error' })
+    } finally {
+      setLoading(false)
+      console.log(candidate)
+    }
+  }
+
   return (
     <>
+      <FixedLinearProgress isLoading={loading} />
       <Tabs
         value={tab}
         indicatorColor="primary"
@@ -27,7 +65,7 @@ export default function Proctoring() {
             color="primary"
             variant="contained"
             component="a"
-            href="https://proctoring.com"
+            href="https://testing.verificient.com"
             target="_blank"
           >
             ¡Estoy lista!
@@ -35,14 +73,22 @@ export default function Proctoring() {
         </TabPanel>
         <TabPanel value={tab} index={1}>
           <MarkDown>{docs['4.5-Proctoring-terminado']}</MarkDown>
+          <br/>
           <Button
-            color="primary"
+            fullWidth
             variant="contained"
-            component="a"
-            href="https://proctoring.com"
-            target="_blank"
+            color="primary"
+            size="large"
+            disabled={hayTests}
+            onClick={collectStudentResults}
           >
-            He terminado
+            {hayTests ? (
+              'Resultados obtenidos'
+            ) : !loading ? (
+              'He terminado'
+            ) : (
+                  <CircularProgress color="white" size={20} />
+                )}
           </Button>
         </TabPanel>
       </Box>
