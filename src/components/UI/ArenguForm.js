@@ -15,9 +15,12 @@ export const ArenguForm = ({ id, hiddenFields, fields }) => {
     let listener = null
 
     const initSDK = () => {
-      return window.ArenguForms.embed(id, container.current).then(form =>
+      return window.ArenguForms.embed(id, container.current).then(form => {
         setHiddenFields(form)
-      )
+        document.querySelectorAll('pre code').forEach(block => {
+          window.hljs.highlightBlock(block)
+        })
+      })
     }
 
     const waitLoadEventAndInitSdk = () => {

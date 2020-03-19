@@ -41,9 +41,10 @@ const GlobalStyles = createGlobalStyle`
     /* border-color: var(--primary-color) */
   }
 
-  .af-field + .af-field {
+  .af-field + .af-field,
+  .af-field + .af-html-block {
     margin: 0;
-    border-top: 1px solid whitesmoke;
+    border-top: 1px solid gainsboro;
     padding: 1.5em 0;
   }
 

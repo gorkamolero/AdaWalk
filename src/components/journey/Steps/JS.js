@@ -14,16 +14,7 @@ export default function JS() {
   let { docs: { intros: docs } } = useConfig()
   const [tab, setTab] = React.useState(0)
   const hiddenFields = useArenguHiddenFields()
-
-  useEffect(() => {
-    
-    setTimeout(() => {
-      document.querySelectorAll('pre code').forEach(block => {
-        window.hljs.highlightBlock(block)
-      })
-    }, 2000)
-  }, [])
-
+  
   if (user.profile.jsScore && user.profile.progress.toLowerCase() === 'proctoring') {
     return <Redirect to="/pasos/tests-presenciales" />
   }
@@ -67,7 +58,14 @@ export default function JS() {
           </Box>
           <Divider />
           <Box mt={4}>
-            <ArenguForm hiddenFields={hiddenFields} id={(globalState.demoMode && user.isAdmin) ? '158455278927547836' : '158262184424627629'} />
+            <ArenguForm
+              hiddenFields={hiddenFields}
+              id={
+                globalState.demoMode && user.isAdmin
+                  ? '158463275783574161'
+                  : '158262184424627629'
+              }
+            />
           </Box>
         </TabPanel>
       </Box>
