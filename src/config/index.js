@@ -1,14 +1,14 @@
 export const Steps = {
-  'Introducción': 'empecemos',
-  'HTML y CSS': 'html-y-css',
+  'Información': 'empecemos',
+  'HTML': 'html-y-css',
   'JS': 'javascript',
-  'Tests presenciales': 'tests-presenciales',
+  'Tests inglés y psicométricos': 'tests-presenciales',
   'Entrevista personal': 'entrevista',
   'Admisión': 'admisión'
 }
 
 export const Progress = {
-  'html': Steps['HTML y CSS'],
+  'html': Steps['HTML'],
   'js': Steps['JS'],
   'proctoring': Steps['Tests presenciales'],
   'entrevista': Steps['Entrevista personal'],

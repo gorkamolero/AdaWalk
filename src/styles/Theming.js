@@ -40,7 +40,8 @@ const theme = createMuiTheme({
       fontSize: '2.618rem'
     },
     h2: {
-      fontSize: '2rem'
+      fontSize: '2rem',
+      fontFamily: '"Product Sans", "Helvetica", "Arial", sans-serif',
     },
     h3: {
       fontSize: '1.2rem'

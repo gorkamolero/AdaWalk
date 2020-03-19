@@ -41,7 +41,7 @@ export default function HTMLCSS() {
               variant="contained"
               onClick={e => setTab(1)}
             >
-              Estoy lista!
+              ¡Hacer test!
             </Button>
           </Box>
         </TabPanel>

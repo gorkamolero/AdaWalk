@@ -5,14 +5,6 @@ import { Container } from '@material-ui/core'
 
 const Stage = ({ pos, totalMoves, adaBackwards }) => {
   const user = useFullUser()
-  React.useEffect(() => {
-    if (user.profile.win) {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      })
-    }
-  }, [user])
   return (
     <Container
       className="stage"

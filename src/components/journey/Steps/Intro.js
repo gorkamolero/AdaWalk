@@ -16,7 +16,7 @@ export default function Intro() {
         variant="contained"
         to={Steps['HTML y CSS']}
       >
-        ¡Estoy lista!
+        ¡Comenzar!
       </Button>
     </Box>
   )

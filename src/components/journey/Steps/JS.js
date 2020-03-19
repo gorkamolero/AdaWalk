@@ -51,7 +51,7 @@ export default function JS() {
               variant="contained"
               onClick={e => setTab(1)}
             >
-              ¡Estoy lista!
+              Comenzar
             </Button>
           </Box>
         </TabPanel>

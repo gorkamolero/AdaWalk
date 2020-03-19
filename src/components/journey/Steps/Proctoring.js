@@ -68,7 +68,7 @@ export default function Proctoring() {
             href="https://testing.verificient.com"
             target="_blank"
           >
-            ¡Estoy lista!
+            Comenzar
           </Button>
         </TabPanel>
         <TabPanel value={tab} index={1}>

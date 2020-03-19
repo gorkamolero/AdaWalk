@@ -1,11 +1,8 @@
 import React from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { ScrollToTop } from 'helpers'
 import { AuthCheck } from 'reactfire'
-import { GlobalStateProvider } from 'hooks/useGlobalState'
+import { GlobalStateProvider } from 'hooks/useGlobalState'
 import { SnackbarProvider } from 'notistack'
 import { ConfirmProvider } from 'material-ui-confirm'
 
@@ -24,6 +21,7 @@ function App() {
     <div className="App">
       <GlobalStateProvider>
         <Router>
+          <ScrollToTop />
           <AdaTheme>
             <GlobalStyles />
             <AuthCheck>
