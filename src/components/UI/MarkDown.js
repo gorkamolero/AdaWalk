@@ -7,6 +7,9 @@ import Link from '@material-ui/core/Link'
 const styles = theme => ({
   listItem: {
     marginTop: theme.spacing(1)
+  },
+  linky: {
+    color: theme.palette.primary.main
   }
 })
 
@@ -44,7 +47,11 @@ const options = {
       )
     },
     p: { component: props => <Typography paragraph {...props} /> },
-    a: { component: Link },
+    a: {
+      component: withStyles(styles)(({ classes, ...props }) => (
+        <a {...props} className={classes.linky} target="_blank">{props.children}</a>
+      ))
+    },
     li: {
       component: withStyles(styles)(({ classes, ...props }) => (
         <li className={classes.listItem}>
