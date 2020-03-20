@@ -46,7 +46,7 @@ export default function StepNav({ step }) {
           return (
             <Step
               key={label}
-              style={(globalState.demoMode && user.isAdmin) &&{ cursor: 'pointer' }}
+              style={{ cursor: (globalState.demoMode && user.isAdmin) ? 'pointer' : 'normal' }}
               onClick={() => (globalState.demoMode && user.isAdmin) && history.push(`/pasos/${Steps[label]}`)}
             >
               <StepLabel StepIconComponent={StepIcon}>
