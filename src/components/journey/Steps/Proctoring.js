@@ -4,7 +4,19 @@ import { useFunctions } from 'reactfire'
 import { useSnackbar } from 'notistack'
 import { useConfirm } from 'material-ui-confirm'
 import { FixedLinearProgress } from 'uno-material-ui'
-import { Box, Button, Tabs, Tab, CircularProgress, Typography, Divider } from '@material-ui/core'
+import {
+  Box,
+  Button,
+  Tabs,
+  Tab,
+  CircularProgress,
+  Typography,
+  Divider,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemAvatar
+} from '@material-ui/core'
 import { useConfig, useFullUser } from 'hooks'
 import { useGlobalState } from 'hooks/useGlobalState'
 import TabPanel from 'components/UI/TabPanel'
@@ -13,14 +25,16 @@ import MarkDown from 'components/UI/MarkDown'
 export default function Proctoring() {
   const globalState = useGlobalState()
   const user = useFullUser()
-  
+
   const [loading, setLoading] = React.useState(false)
   const { enqueueSnackbar } = useSnackbar()
   const confirm = useConfirm()
-  
-  let { docs: { intros: docs } } = useConfig()
+
+  let {
+    docs: { intros: docs }
+  } = useConfig()
   const [tab, setTab] = React.useState(0)
-  
+
   const collectResults = useFunctions().httpsCallable('collectResults')
   const asignarTEA = useFunctions().httpsCallable('asignarTea')
 
@@ -33,35 +47,36 @@ export default function Proctoring() {
         maxWidth: 'xs'
       }
     })
-    .then(async () => {
-      setLoading(true)
-      await asignarTEA({
-        email: user.email,
-        id: user.uid,
-        aprobar: true
+      .then(async () => {
+        setLoading(true)
+        await asignarTEA({
+          email: user.email,
+          id: user.uid,
+          aprobar: true
+        })
+        setLoading(false)
+        enqueueSnackbar(`Resultados aprobados asignados`, {
+          variant: 'success'
+        })
       })
-      setLoading(false)
-      enqueueSnackbar(`Resultados aprobados asignados`, {
-        variant: 'success'
+      .catch(async () => {
+        setLoading(true)
+        await asignarTEA({
+          email: user.email,
+          id: user.uid,
+          aprobar: false
+        })
+        setLoading(false)
+        enqueueSnackbar(`Resultados suspensos asignados`, {
+          variant: 'error'
+        })
       })
-    })
-    .catch(async () => {
-      setLoading(true)
-      await asignarTEA({
-        email: user.email,
-        id: user.uid,
-        aprobar: false
-      })
-      setLoading(false)
-      enqueueSnackbar(`Resultados suspensos asignados`, {
-        variant: 'error'
-      })
-    })
   }
 
   const hayTests = user.profile.teaResults
 
-  if (hayTests && !globalState.demoMode) return <Redirect to="/pasos/entrevista" />
+  if (hayTests && !globalState.demoMode)
+    return <Redirect to="/pasos/entrevista" />
 
   const collectStudentResults = async () => {
     setLoading(true)
@@ -109,14 +124,26 @@ export default function Proctoring() {
         </TabPanel>
         <TabPanel value={tab} index={1}>
           <Box pb={4}>
-            <Typography gutterBottom>
-              <strong>User</strong>: <em>{user.profile.email}</em>
-            </Typography>
-            <Typography gutterBottom>
-              <strong>Password</strong>: <em>{user.profile.password}</em>
-            </Typography>
-            <br />
-            <Divider />
+            <List>
+              <ListItem divider>
+                <ListItemText
+                  primary="Usuario / User Proctoring"
+                  secondary={user.profile.email}
+                />
+              </ListItem>
+              <ListItem divider>
+                <ListItemText
+                  primary="Usuario / User TEA"
+                  secondary={user.profile.login}
+                />
+              </ListItem>
+              <ListItem divider>
+                <ListItemText
+                  primary="Contraseña"
+                  secondary={user.profile.password}
+                />
+              </ListItem>
+            </List>
           </Box>
           <MarkDown>{docs['4.5-Proctoring-terminado']}</MarkDown>
           <Box mt={4}>

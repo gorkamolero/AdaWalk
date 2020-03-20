@@ -30,6 +30,10 @@ const GlobalStyles = createGlobalStyle`
     border: none;
   }
 
+  img {
+    max-width: 100%;
+  }
+
   strong {
     font-weight: 500;
   }
