@@ -127,7 +127,7 @@ export default function Proctoring() {
             <List>
               <ListItem divider>
                 <ListItemText
-                  primary="Usuario / User Proctoring"
+                  primary="Usuario / User Proctortrack"
                   secondary={user.profile.email}
                 />
               </ListItem>
