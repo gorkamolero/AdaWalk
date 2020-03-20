@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import { useFullUser } from 'hooks'
+import { useGlobalState } from 'hooks/useGlobalState'
 import Stage from './Stage'
 import {
   Stepper,
@@ -14,6 +16,8 @@ import { Steps } from 'config'
 
 export default function StepNav({ step }) {
   const history = useHistory()
+  const user = useFullUser()
+  const globalState = useGlobalState()
 
   // Stepper
   const [activeStep, setActiveStep] = useState(0)
@@ -42,8 +46,8 @@ export default function StepNav({ step }) {
           return (
             <Step
               key={label}
-              style={{ cursor: 'pointer' }}
-              onClick={() => history.push(`/pasos/${Steps[label]}`)}
+              style={(globalState.demoMode && user.isAdmin) &&{ cursor: 'pointer' }}
+              onClick={() => (globalState.demoMode && user.isAdmin) && history.push(`/pasos/${Steps[label]}`)}
             >
               <StepLabel StepIconComponent={StepIcon}>
                 <Typography variant="h5">{label}</Typography>
