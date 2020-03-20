@@ -61,7 +61,7 @@ export default function Proctoring() {
 
   const hayTests = user.profile.teaResults
 
-  if (hayTests) return <Redirect to="/pasos/entrevista" />
+  if (hayTests && !globalState.demoMode) return <Redirect to="/pasos/entrevista" />
 
   const collectStudentResults = async () => {
     setLoading(true)
