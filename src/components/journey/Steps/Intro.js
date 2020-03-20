@@ -14,7 +14,7 @@ export default function Intro() {
         component={Link}
         color="primary"
         variant="contained"
-        to={Steps['HTML y CSS']}
+        to={Steps['HTML']}
       >
         ¡Comenzar!
       </Button>

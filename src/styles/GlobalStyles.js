@@ -30,6 +30,10 @@ const GlobalStyles = createGlobalStyle`
     border: none;
   }
 
+  strong {
+    font-weight: 500;
+  }
+
   /* Arengu Forms */
   .af-field-label label {
     padding: var(--input-padding);

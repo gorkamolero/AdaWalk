@@ -13,6 +13,7 @@ import {
   CircularProgress
 } from '@material-ui/core'
 import AdaHeader from 'components/UI/AdaHeader'
+import { AdaSpinner } from 'components/UI/common'
 
 
 export default function LoginForm() {
@@ -104,6 +105,8 @@ export default function LoginForm() {
     confirmSignIn(href)
     return () => confirmSignIn(href)
   }, [location, auth, enqueueSnackbar])
+
+  if (window.location.href.includes('?')) return <AdaSpinner />
 
   return (
     <SuperCenter>

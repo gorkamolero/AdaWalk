@@ -56,7 +56,7 @@ const SuperNav = () => {
       click: () => history.push('/')
     },
     {
-      icon: globalState.demoMode ? <Visibility fontSize="inherit" /> : <VisibilityOff fontSize="inherit" />,
+      icon: globalState.demoMode ? <VisibilityOff fontSize="inherit" /> : <Visibility fontSize="inherit" />,
       name: globalState.demoMode ? 'Terminar modo demo' : 'Iniciar modo demo',
       click: () => globalState.setDemoMode({ demoMode: !globalState.demoMode })
     },

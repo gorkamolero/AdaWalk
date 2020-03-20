@@ -1,5 +1,6 @@
 import React from 'react'
 import { useParams, Switch, Route, useLocation, Redirect } from 'react-router-dom'
+import { useGlobalState } from 'hooks/useGlobalState'
 import { useFullUser, useStepper } from 'hooks'
 import AdaWin from 'components/UI/AdaWin'
 import { AnimatePresence } from 'framer-motion'
@@ -23,6 +24,7 @@ export default function Stepper() {
   const location = useLocation()
   const user = useFullUser()
   const stepper = useStepper()
+  const globalState = useGlobalState()
   console.log('Full user', user)
 
   React.useEffect(() => {
@@ -30,11 +32,11 @@ export default function Stepper() {
   }, [stepper])
 
   // Render
-  if (user.profile && user.profile.status && !user.profile.status.includes('OK')) return (
+  if (user.profile && user.profile.status && !user.profile.status.includes('OK') && !globalState.demoMode) return (
     <StepBlocker status={user.profile.status} />
   )
 
-  if (user.profile && user.profile.admission) return (
+  if (user.profile && user.profile.admission && !globalState.demoMode) return (
     <StepBlocker status={user.profile.admission} />
   )
 

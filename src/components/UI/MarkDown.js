@@ -17,7 +17,7 @@ const options = {
   overrides: {
     h1: {
       component: props => (
-        <Typography gutterBottom component="h1" variant="h4" {...props} />
+        <Typography gutterBottom component="h1" variant="h2" {...props} />
       )
     },
     h2: {
