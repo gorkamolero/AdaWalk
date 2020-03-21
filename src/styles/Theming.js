@@ -51,9 +51,10 @@ const theme = createMuiTheme({
     },
     h5: {
       fontFamily: '"Bangers", "Product Sans", "Helvetica", "Arial", sans-serif',
-      fontSize: '1rem',
+      fontSize: '1.2rem',
       fontWeight: 'lighter',
-      color: '#099d8d'
+      color: '#099d8d',
+      letterSpacing: '.025em'
     },
     button: {
       letterSpacing: '0.04em'

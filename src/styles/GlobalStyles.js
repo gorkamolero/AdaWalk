@@ -227,6 +227,11 @@ const GlobalStyles = createGlobalStyle`
       font-size: 80%;
     }
   }
+
+  .MarqueeContent a {
+    color: white;
+    font-weight: bold;
+  }
 `
 
 export default GlobalStyles

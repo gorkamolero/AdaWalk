@@ -1,22 +1,28 @@
 import React from 'react'
+import styled from 'styled-components'
 import { Typography } from '@material-ui/core'
-import Marquee from 'react-smooth-marquee'
+import ReactMarquee from 'react-smooth-marquee'
+import { useConfig } from 'hooks'
+import MarkDown from 'components/UI/MarkDown'
 
-export default function JustMarquee() {
+const StyledMarquee = styled(ReactMarquee)`
+  a {
+    color: inherit !important;
+    font-weight: bold;
+  }
+`
+
+const Marquee = () => {
+  const config = useConfig()
+  const { news } = config.docs.otros
   return (
-    <Marquee velocity={0.06}>
-      <Typography variant="h5">
-        bot Free Darko HuffPo Article Skimmer Bill Keller libel lawyer social
-        media Demand Media David Cohn, newspaper data visualization Facebook
-        Fuego collaboration Innovator's Dilemma hot news doctrine. analytics
-        open newsroom curation shoot a photo reporting aggregation syndicated
-        going forward Dan Fleckner West Seattle Blog bringing a tote bag to a
-        knife fight, perfect for starting a campfire data journalism Rupert
-        Murdoch hot news doctrine audience atomization overcome Tim Carmody do
-        what you do best and link to the rest learnings YouTube, Zite
-        TechCrunch Josh Marshall Gutenberg parenthesis The Weekender synergize
-        Julian Assange reality-based NYT R&D.
+    <StyledMarquee velocity={0.06}>
+      <Typography variant="h5" style={{ color: 'rgba(255, 255, 255, .9)' }}>
+        {
+          [1, 2, 3].map(times => <MarkDown style={{ marginRight: '.5em' }}>{news}</MarkDown>)
+        }
       </Typography>
-    </Marquee>
+    </StyledMarquee>
   )
 }
+export default Marquee

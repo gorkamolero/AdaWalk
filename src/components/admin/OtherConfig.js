@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { useConfirm } from 'material-ui-confirm'
 import { useConfig } from 'hooks'
 import { Grid, Card, CardActions, CardContent, Button, Typography, TextField } from '@material-ui/core'
+import MarkdownEditor from 'components/admin/MarkdownEditor'
 
 const AdminCard = styled(Card)`
   text-align: left;
@@ -19,6 +20,8 @@ const SuperTextField = styled(TextField)`
 export default function OtherConfig() {
   const config = useConfig()
   const confirm = useConfirm()
+
+  console.log(config)
 
   const onConfirm = async () => {
     await confirm({
@@ -53,7 +56,24 @@ export default function OtherConfig() {
           </CardActions>
         </AdminCard>
       </Grid>
-      {[1,2,3,4,5,6,7,9].map((el) => (
+
+        <Grid item xs={4}>
+          <AdminCard>
+            <CardContent>
+              <Typography color="textSecondary" gutterBottom>
+                Noticias en Marquee
+              </Typography>
+
+              <MarkdownEditor
+                collection="otros"
+                id="news"
+                markdown={config.docs.otros['news']}
+              />
+
+            </CardContent>
+          </AdminCard>
+        </Grid>
+      {[1,2,3].map((el) => (
         <Grid key={el} item xs={4}>
           <AdminCard>
             <CardContent>
