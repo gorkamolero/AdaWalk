@@ -1,5 +1,6 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
+import { useFirestore } from 'reactfire'
+import { Redirect, Link } from 'react-router-dom'
 import { useFunctions } from 'reactfire'
 import { useSnackbar } from 'notistack'
 import { useConfirm } from 'material-ui-confirm'
@@ -25,6 +26,23 @@ import MarkDown from 'components/UI/MarkDown'
 export default function Proctoring() {
   const globalState = useGlobalState()
   const user = useFullUser()
+  const userDoc = useFirestore()
+    .collection('candidates')
+    .doc(user.uid)
+
+  const letsGo = async () => {
+    window.open('https://testing.verificient.com')
+    setLoading(true)
+    try {
+      userDoc.update({ proctoring: 'started' })
+    } catch (err) {
+      enqueueSnackbar(err.message, {
+        variant: 'error'
+      })
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const [loading, setLoading] = React.useState(false)
   const { enqueueSnackbar } = useSnackbar()
@@ -81,25 +99,35 @@ export default function Proctoring() {
   const collectStudentResults = async () => {
     setLoading(true)
 
-    let candidate
-    try {
-      candidate = await collectResults({
-        id: user.uid,
-        email: user.email,
-        demo: false
-        // true busca un estudiante random
-      })
-      enqueueSnackbar(`Resultados recogidos para ${user.email}`, {
-        variant: 'success'
-      })
-    } catch (err) {
-      enqueueSnackbar(err.message, { variant: 'error' })
-    } finally {
-      setLoading(false)
-      console.log(candidate)
-    }
+    confirm({
+        title: '¿Seguro que has terminado?',
+        description: 'Bla bla blar',
+        confirmationText: 'He terminado',
+        cancellationText: 'No he terminado',
+        dialogProps: {
+          maxWidth: 'xs'
+        }
+    }).then(async () => {
+      let candidate
+      try {
+        candidate = await collectResults({
+          id: user.uid,
+          email: user.email,
+          demo: false
+          // true busca un estudiante random
+        })
+        enqueueSnackbar(`Resultados recogidos para ${user.email}`, {
+          variant: 'success'
+        })
+      } catch (err) {
+        enqueueSnackbar(`¡Algo no ha ido bien! Por favor, escribe a admisiones@adalab.es`, { variant: 'error' })
+      } finally {
+        setLoading(false)
+      }
+    })
   }
 
+  const startedTests = user.profile.proctoring === 'started'
   return (
     <>
       <FixedLinearProgress isLoading={loading} />
@@ -112,16 +140,17 @@ export default function Proctoring() {
         centered
       >
         <Tab label="Introducción" />
-        <Tab label="Sigue las instrucciones" />
+        <Tab label="Tests" />
         {globalState.demoMode && user.isAdmin && <Tab label="Demo TEA" />}
       </Tabs>
       <Box p={2} textAlign="left">
         <TabPanel value={tab} index={0}>
           <MarkDown>{docs['4-Proctoring']}</MarkDown>
           <Button color="primary" variant="contained" onClick={() => setTab(1)}>
-            Comenzar
+            Sí, doy mi consentimiento
           </Button>
         </TabPanel>
+
         <TabPanel value={tab} index={1}>
           <Box pb={4}>
             <List>
@@ -145,15 +174,29 @@ export default function Proctoring() {
               </ListItem>
             </List>
           </Box>
+
           <MarkDown>{docs['4.5-Proctoring-terminado']}</MarkDown>
-          <Box mt={4}>
+
+          <Box mt={4} display="flex">
             <Button
               fullWidth
-              variant="contained"
               color="primary"
+              variant={!startedTests ? 'contained' : 'outlined'}
               size="large"
-              disabled={hayTests}
+              disabled={hayTests || startedTests}
+              onClick={letsGo}
+            >
+              Comenzar
+            </Button>
+
+            <Button
+              fullWidth
+              color="primary"
+              variant={startedTests ? 'contained' : 'outlined'}
+              size="large"
+              disabled={hayTests || !startedTests}
               onClick={collectStudentResults}
+              style={{ marginLeft: '1em' }}
             >
               {hayTests ? (
                 'Resultados obtenidos'

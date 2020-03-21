@@ -13,11 +13,21 @@ import JS from './Steps/JS'
 import EntrevistaPersonal from './Steps/EntrevistaPersonal'
 import Proctoring from './Steps/Proctoring'
 
-const AnimatedRoute = props => (
-  <Route {...props}>
-    <StepContainer position="absolute">{props.children}</StepContainer>
-  </Route>
-)
+const AnimatedRoute = props => {
+  const globalState = useGlobalState()
+
+  return (
+    <Route {...props}>
+      <StepContainer
+        demo={globalState.demoMode}
+        // position={globalState.demoMode ? 'static' : 'absolute'}
+        position="absolute"
+      >
+        {props.children}
+      </StepContainer>
+    </Route>
+  )
+}
 
 export default function Stepper() {
   let { step } = useParams()
