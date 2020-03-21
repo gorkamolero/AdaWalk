@@ -4,7 +4,7 @@ export const Steps = {
   'JS': 'javascript',
   'Tests inglés y psicométricos': 'tests-ingles-psicometricos',
   'Entrevista personal': 'entrevista',
-  'Admisión': 'admisión'
+  // 'Admisión': 'admisión'
 }
 
 export const Progress = {
@@ -12,5 +12,5 @@ export const Progress = {
   'js': Steps['JS'],
   'proctoring': Steps['Tests inglés y psicométricos'],
   'entrevista': Steps['Entrevista personal'],
-  'admisión': Steps['Admisión']
+  // 'admisión': Steps['Admisión']
 }
