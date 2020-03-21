@@ -5,7 +5,6 @@ import {
   useFirestoreDocData,
   useFirestoreCollection
 } from 'reactfire'
-import { useSnackbar } from 'notistack'
 import { Steps } from 'config'
 
 export function useConfig() {
@@ -84,8 +83,6 @@ export function useStepper() {
     }
 
   }, [user.isAdmin, user.profile, user])
-
-  console.log(route)
 
   return route
 }

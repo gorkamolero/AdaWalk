@@ -26,7 +26,7 @@ export default function Stepper() {
   const stepper = useStepper()
   const globalState = useGlobalState()
   console.log('Full user', user)
-  console.log(location.pathname)
+  console.log('STEP', stepper)
 
   // Render
   if (user.profile && user.profile.status && !user.profile.status.includes('OK') && !globalState.demoMode) return (
@@ -41,7 +41,7 @@ export default function Stepper() {
     <>
       <StepNav step={step} />
       <br />
-      {user.isAdmin || <Redirect to={stepper} />}
+      {<Redirect to={stepper} />}
 
       
       {user.profile.win && <AdaWin win={user.profile.win} />}

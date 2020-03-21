@@ -1,6 +1,6 @@
 import React from 'react'
 import { useFirestore } from 'reactfire'
-import { Link, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { useSnackbar } from 'notistack'
 import { useFullUser } from 'hooks'
 import { useConfig } from 'hooks'
@@ -28,7 +28,7 @@ export default function Intro() {
     }
   }
 
-  if (user.profile.progress === 'started') return <Redirect to="/pasos/html" />
+  if (user.profile.progress === 'started') return <Redirect to={Steps['HTML']} />
 
   return (
     <Box p={4} textAlign="left">
