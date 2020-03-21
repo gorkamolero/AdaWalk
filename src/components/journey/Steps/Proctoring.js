@@ -98,14 +98,15 @@ export default function Proctoring() {
 
   const collectStudentResults = async () => {
     setLoading(true)
+    const description = `1. Has completado el test de inglés; 2. Has completado los 4 tests psicométricos; 3. Has cerrado la aplicación de Proctortrack`
 
     confirm({
         title: '¿Seguro que has terminado?',
-        description: 'Bla bla blar',
+        description,
         confirmationText: 'He terminado',
         cancellationText: 'No he terminado',
         dialogProps: {
-          maxWidth: 'xs'
+          maxWidth: 'xs',
         }
     }).then(async () => {
       let candidate

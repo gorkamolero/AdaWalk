@@ -73,13 +73,13 @@ export function useStepper() {
     if (user.profile.progress === 'started') setRoute('/pasos/html')
 
     if (user.profile.progress &&  user.profile.progress === 'html') {
-      if (!user.profile.htmlScore) setRoute(Steps['Introducción'])
-      if (user.profile.htmlScore) setRoute(Steps['JS'])
+      if (!user.profile.htmlScore) setRoute(`/pasos/${Steps['Introducción']}`)
+      if (user.profile.htmlScore) setRoute(`/pasos/${Steps['JS']}`)
     }
 
     if (user.profile.progress && user.profile.progress.toLowerCase().trim() === 'proctoring') {
       console.log('WERE HERE')
-      setRoute(Steps['Tests inglés y psicométricos'])
+      setRoute(`/pasos/${Steps['Tests inglés y psicométricos']}`)
     }
 
   }, [user.isAdmin, user.profile, user])
