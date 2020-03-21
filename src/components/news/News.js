@@ -7,6 +7,7 @@ import AdaMarquee from 'components/news/Marquee'
 import Countdown from 'components/news/Countdown'
 
 const useNewsStyles = makeStyles(theme => {
+  console.log(theme)
   return createStyles({
     root: {
       boxShadow: '0 4px 10px 0 rgba(0,0,0,.15)',

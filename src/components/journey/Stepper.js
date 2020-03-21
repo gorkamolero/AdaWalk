@@ -26,10 +26,7 @@ export default function Stepper() {
   const stepper = useStepper()
   const globalState = useGlobalState()
   console.log('Full user', user)
-
-  React.useEffect(() => {
-    console.log('DEVUELVE', stepper)
-  }, [stepper])
+  console.log(location.pathname)
 
   // Render
   if (user.profile && user.profile.status && !user.profile.status.includes('OK') && !globalState.demoMode) return (
@@ -51,19 +48,19 @@ export default function Stepper() {
       
       <AnimatePresence>
         <Switch location={location} key={location.pathname}>
-          <AnimatedRoute path="/pasos/empecemos">
+          <AnimatedRoute exact path="/pasos/empecemos">
             <Intro />
           </AnimatedRoute>
-          <AnimatedRoute path="/pasos/html-y-css">
+          <AnimatedRoute exact path="/pasos/html">
             <HTMLCSS />
           </AnimatedRoute>
-          <AnimatedRoute path="/pasos/javascript">
+          <AnimatedRoute exact path="/pasos/javascript">
             <JS />
           </AnimatedRoute>
-          <AnimatedRoute path="/pasos/tests-presenciales">
+          <AnimatedRoute exact path="/pasos/tests-presenciales">
             <Proctoring />
           </AnimatedRoute>
-          <AnimatedRoute path="/pasos/entrevista">
+          <AnimatedRoute exact path="/pasos/entrevista">
             <EntrevistaPersonal />
           </AnimatedRoute>
         </Switch>

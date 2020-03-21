@@ -1,6 +1,6 @@
 export const Steps = {
   'Información': 'empecemos',
-  'HTML': 'html-y-css',
+  'HTML': 'html',
   'JS': 'javascript',
   'Tests inglés y psicométricos': 'tests-presenciales',
   'Entrevista personal': 'entrevista',

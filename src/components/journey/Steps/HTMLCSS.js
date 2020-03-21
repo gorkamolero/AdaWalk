@@ -15,6 +15,10 @@ export default function HTMLCSS() {
   const [tab, setTab] = React.useState(0)
   const hiddenFields = useArenguHiddenFields()
 
+  React.useEffect(() => {
+    setTimeout(() => window.dispatchEvent(new CustomEvent('resize')), 1000)
+  }, []);
+
   if (user.profile.htmlScore) {
     return <Redirect to="/pasos/javascript" />
   }

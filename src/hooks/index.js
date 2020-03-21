@@ -5,6 +5,7 @@ import {
   useFirestoreDocData,
   useFirestoreCollection
 } from 'reactfire'
+import { useSnackbar } from 'notistack'
 import { Steps } from 'config'
 
 export function useConfig() {
@@ -68,7 +69,9 @@ export function useStepper() {
   useEffect(() => {
     if (user.isAdmin && !user.profile) setRoute('/admin')
 
-    if (!user.profile.progress || !user.profile.htmlScore) setRoute('/pasos/empecemos')
+    if (!user.profile.progress) setRoute('/pasos/empecemos')
+
+    if (user.profile.progress === 'started') setRoute('/pasos/html')
 
     if (user.profile.progress &&  user.profile.progress === 'html') {
       if (!user.profile.htmlScore) setRoute(Steps['Introducción'])
@@ -80,7 +83,7 @@ export function useStepper() {
       setRoute(Steps['Tests presenciales'])
     }
 
-  }, [user.isAdmin, user.profile])
+  }, [user.isAdmin, user.profile, user])
 
   console.log(route)
 

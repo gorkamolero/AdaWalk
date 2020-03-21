@@ -32,7 +32,7 @@ export default function Stepper() {
           <AnimatedRoute path="/pasos/empecemos">
             <Intro />
           </AnimatedRoute>
-          <AnimatedRoute path="/pasos/html-y-css">
+          <AnimatedRoute path="/pasos/html">
             <HTMLCSS />
           </AnimatedRoute>
           <AnimatedRoute path="/pasos/javascript">
