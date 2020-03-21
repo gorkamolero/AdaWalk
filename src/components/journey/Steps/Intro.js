@@ -28,7 +28,7 @@ export default function Intro() {
     }
   }
 
-  if (user.profile.progress === 'started') return <Redirect to={Steps['HTML']} />
+  if (user.profile.progress === 'started') return <Redirect to="/pasos/html" />
 
   return (
     <Box p={4} textAlign="left">

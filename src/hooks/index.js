@@ -79,7 +79,7 @@ export function useStepper() {
 
     if (user.profile.progress && user.profile.progress.toLowerCase().trim() === 'proctoring') {
       console.log('WERE HERE')
-      setRoute(Steps['Tests presenciales'])
+      setRoute(Steps['Tests inglés y psicométricos'])
     }
 
   }, [user.isAdmin, user.profile, user])

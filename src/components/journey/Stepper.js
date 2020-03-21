@@ -57,7 +57,7 @@ export default function Stepper() {
           <AnimatedRoute exact path="/pasos/javascript">
             <JS />
           </AnimatedRoute>
-          <AnimatedRoute exact path="/pasos/tests-presenciales">
+          <AnimatedRoute exact path="/pasos/tests-ingles-psicometricos">
             <Proctoring />
           </AnimatedRoute>
           <AnimatedRoute exact path="/pasos/entrevista">

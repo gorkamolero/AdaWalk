@@ -16,7 +16,7 @@ export default function JS() {
   const hiddenFields = useArenguHiddenFields()
   
   if (user.profile.jsScore && user.profile.progress.toLowerCase() === 'proctoring') {
-    return <Redirect to="/pasos/tests-presenciales" />
+    return <Redirect to="/pasos/tests-ingles-psicometricos" />
   }
 
   return (
